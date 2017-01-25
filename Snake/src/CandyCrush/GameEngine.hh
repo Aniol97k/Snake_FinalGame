@@ -26,6 +26,7 @@ namespace GameEngine {
 		R.LoadTexture<ObjectID::CANDY_GREEN>("gfx/green.png");
 		R.LoadTexture<ObjectID::CANDY_YELLOW>("gfx/yellow.png");*/
 		R.LoadTexture<ObjectID::BG_00>("gfx/bg.jpg");
+		R.LoadTexture<ObjectID::ARROW>("gfx/arrow.png");
 	}
 	//! Adds the game scenes into the Scene Manager and decides which is the first screen
 	void AddScenes(void) {

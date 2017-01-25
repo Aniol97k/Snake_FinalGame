@@ -20,5 +20,6 @@ public:
 private:
 	Grid m_grid;
 	Sprite m_background;
+	Sprite m_Image;
 	int m_score{ 0 };
 };
