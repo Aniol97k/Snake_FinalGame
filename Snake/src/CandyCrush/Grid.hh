@@ -43,3 +43,19 @@ private:
 		float percent = 0.0f;
 	} shiftInfo; //Shift structure for shifting candies
 };
+
+class GridSnake {
+public:
+	GridSnake(int rows, int columns, int cellWidth, int chellHeight);
+	~GridSnake();
+	void Update();
+	void Draw();
+private:
+	Sprite snake;
+	Sprite apple;
+	Sprite background;
+	Sprite array[][50];
+
+
+
+};

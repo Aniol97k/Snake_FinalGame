@@ -18,7 +18,6 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Grid m_grid;
 	Sprite m_background;
 	Sprite m_Image;
 	int m_score{ 0 };
@@ -33,7 +32,6 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Grid m_grid;
 	Sprite m_background;
 	Sprite m_Image;
 	int m_score{ 0 };
@@ -48,7 +46,6 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Grid m_grid;
 	Sprite m_background;
 	Sprite m_Image;
 	int m_score{ 0 };

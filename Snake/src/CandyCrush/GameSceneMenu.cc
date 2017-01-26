@@ -15,7 +15,7 @@ using namespace Logger;
 
 
 
-GameSceneMenu::GameSceneMenu(void) : m_grid("lvl/testLvl.dat", CELL_WIDTH, CELL_HEIGHT) {
+GameSceneMenu::GameSceneMenu(void){
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_00 };
 	int arrowHeight = W.GetHeight() / 2 - 45;
 	m_Image = { {W.GetWidth()/2 - 180, arrowHeight,90,90}, ObjectID::ARROW};
@@ -39,28 +39,12 @@ void GameSceneMenu::Update(void) {
 		}
 		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) { SM.SetCurScene<GameSceneDiff>(); } 
 	}
-	
 
-	static MouseCoords mouseCoords(0,0);
-	if (IM.IsMouseDown<MOUSE_BUTTON_LEFT>()) {
-		Println("===============");
-		Println("mxp: ", mouseCoords);
-		mouseCoords = IM.GetMouseCoords();
-	} else if (IM.IsMouseUp<MOUSE_BUTTON_LEFT>()) {
-		Println("mxn: ", IM.GetMouseCoords());
-		m_grid.CheckMouseSwift(mouseCoords, IM.GetMouseCoords());
-	}
-	m_grid.Update(m_score); // Update grid
-	// Test InputManager key methods
-	if (IM.IsKeyHold<'a'>()) Println("a hold");
-	if (IM.IsKeyDown<'0'>()) Println("0 down");
-	if (IM.IsKeyUp<KEY_BUTTON_DOWN>()) Println("down arrow up");
 }
 
 void GameSceneMenu::Draw(void) {
 	m_background.Draw(); // Render background
 	m_Image.Draw();
-	//m_grid.Draw(); // Render grid*/
 
 
 	//main scene texts

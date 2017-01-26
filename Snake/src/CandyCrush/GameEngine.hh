@@ -32,6 +32,7 @@ namespace GameEngine {
 	//! Adds the game scenes into the Scene Manager and decides which is the first screen
 	void AddScenes(void) {
 		SM.AddScene<GameSceneMenu>();
+		SM.AddScene<GameSceneEasy>();
 		SM.AddScene<GameSceneDiff>();
 		SM.SetCurScene<GameSceneMenu>();
 	}
