@@ -27,12 +27,13 @@ namespace GameEngine {
 		R.LoadTexture<ObjectID::CANDY_YELLOW>("gfx/yellow.png");*/
 		R.LoadTexture<ObjectID::BG_00>("gfx/bg.jpg");
 		R.LoadTexture<ObjectID::ARROW>("gfx/arrow.png");
+		R.LoadTexture<ObjectID::BG_GAME>("gfx/SnakeGameBg.png");
 	}
 	//! Adds the game scenes into the Scene Manager and decides which is the first screen
 	void AddScenes(void) {
-		SM.AddScene<GameScene>();
-		SM.AddScene<GameScene2>();
-		SM.SetCurScene<GameScene>();
+		SM.AddScene<GameSceneMenu>();
+		SM.AddScene<GameSceneDiff>();
+		SM.SetCurScene<GameSceneMenu>();
 	}
 	/** 
 	 * Runs the game specifying the window's name and dimensions

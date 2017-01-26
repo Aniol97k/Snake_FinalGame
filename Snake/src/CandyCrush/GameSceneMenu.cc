@@ -15,29 +15,29 @@ using namespace Logger;
 
 
 
-GameScene::GameScene(void) : m_grid("lvl/testLvl.dat", CELL_WIDTH, CELL_HEIGHT) {
+GameSceneMenu::GameSceneMenu(void) : m_grid("lvl/testLvl.dat", CELL_WIDTH, CELL_HEIGHT) {
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_00 };
 	int arrowHeight = W.GetHeight() / 2 - 45;
 	m_Image = { {W.GetWidth()/2 - 180, arrowHeight,90,90}, ObjectID::ARROW};
 }
 
-GameScene::~GameScene(void){
+GameSceneMenu::~GameSceneMenu(void){
 }
 
-void GameScene::OnEntry(void) {
+void GameSceneMenu::OnEntry(void) {
 }
 
-void GameScene::OnExit(void) {
+void GameSceneMenu::OnExit(void) {
 }
 
-void GameScene::Update(void) {
+void GameSceneMenu::Update(void) {
 	
 	if (IM.IsKeyDown<KEY_BUTTON_UP>()) {m_Image.transform.y = W.GetHeight() / 2 - 45;}
 	else if (IM.IsKeyDown<KEY_BUTTON_DOWN>()) {	m_Image.transform.y = W.GetHeight() / 2 + 30;}
 	else if (IM.IsKeyDown<KEY_BUTTON_ENTER>()) {
 		if (m_Image.transform.y == W.GetHeight() / 2 + 30) {std::exit(0);
 		}
-		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) { SM.SetCurScene<GameScene2>(); } 
+		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) { SM.SetCurScene<GameSceneDiff>(); } 
 	}
 	
 
@@ -57,7 +57,7 @@ void GameScene::Update(void) {
 	if (IM.IsKeyUp<KEY_BUTTON_DOWN>()) Println("down arrow up");
 }
 
-void GameScene::Draw(void) {
+void GameSceneMenu::Draw(void) {
 	m_background.Draw(); // Render background
 	m_Image.Draw();
 	//m_grid.Draw(); // Render grid*/

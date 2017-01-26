@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameScene.cc" />
-    <ClCompile Include="GameScene2.cpp" />
+    <ClCompile Include="GameSceneMenu.cc" />
+    <ClCompile Include="GameSceneDiff.cpp" />
+    <ClCompile Include="GameSceneEasy.cpp" />
     <ClCompile Include="Grid.cc" />
     <ClCompile Include="main.cc" />
   </ItemGroup>

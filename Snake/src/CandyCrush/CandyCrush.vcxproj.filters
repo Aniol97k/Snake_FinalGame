@@ -16,13 +16,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cc" />
-    <ClCompile Include="GameScene.cc">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="Grid.cc">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene2.cpp">
+    <ClCompile Include="GameSceneEasy.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneMenu.cc">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneDiff.cpp">
       <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>

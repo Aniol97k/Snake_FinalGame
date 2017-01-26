@@ -10,7 +10,7 @@
 // Enum ID used to identify each Game Object in the Game
 enum class ObjectID : const int {
 	CANDY_BLUE, CANDY_GREEN, CANDY_YELLOW, CANDY_RED, CANDY_PURPLE, CANDY_ORANGE, CANDY_MAX, CANDY_EMPTY, // Candies IDs
-	CELL_EMPTY,ARROW, // Cell IDs
+	CELL_EMPTY,ARROW,BG_GAME, // Cell IDs
 	BG_00  // Background IDs
 };
 inline std::ostream &operator<<(std::ostream &os, const ObjectID &id) { return os << int(id); };

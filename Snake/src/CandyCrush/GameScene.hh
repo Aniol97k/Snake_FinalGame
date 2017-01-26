@@ -9,10 +9,10 @@
 #include "Scene.hh"
 
 // GameScene class with the main gameplay mode
-class GameScene : public Scene {
+class GameSceneMenu : public Scene {
 public:
-	explicit GameScene();
-	~GameScene() override;
+	explicit GameSceneMenu();
+	~GameSceneMenu() override;
 	void OnEntry(void) override;
 	void OnExit(void) override;
 	void Update(void) override;
@@ -24,10 +24,25 @@ private:
 	int m_score{ 0 };
 };
 
-class GameScene2 : public Scene {
+class GameSceneDiff : public Scene {
 public:
-	explicit GameScene2();
-	~GameScene2() override;
+	explicit GameSceneDiff();
+	~GameSceneDiff() override;
+	void OnEntry(void) override;
+	void OnExit(void) override;
+	void Update(void) override;
+	void Draw(void) override;
+private:
+	Grid m_grid;
+	Sprite m_background;
+	Sprite m_Image;
+	int m_score{ 0 };
+};
+
+class GameSceneEasy : public Scene {
+public:
+	explicit GameSceneEasy();
+	~GameSceneEasy() override;
 	void OnEntry(void) override;
 	void OnExit(void) override;
 	void Update(void) override;

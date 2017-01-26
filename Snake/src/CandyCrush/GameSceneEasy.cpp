@@ -1,8 +1,3 @@
-/******************************************************************
-* Copyright (C) 2016 Jordi Serrano Berbel <jsberbel95@gmail.com> *
-* This can not be copied, modified and/or distributed without    *
-* express permission of the copyright owner.                     *
-******************************************************************/
 
 #include "GUI.hh"
 #include "System.hh"
@@ -15,23 +10,23 @@ using namespace Logger;
 
 
 
-GameScene2::GameScene2(void) : m_grid("lvl/testLvl.dat", CELL_WIDTH, CELL_HEIGHT) {
+GameSceneEasy::GameSceneEasy(void) : m_grid("lvl/testLvl.dat", CELL_WIDTH, CELL_HEIGHT) {
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_00 };
 	int arrowHeight = W.GetHeight() / 2 - 45;
 	m_Image = { { W.GetWidth() / 2 - 180, arrowHeight,90,90 }, ObjectID::ARROW };
 }
 
-GameScene2::~GameScene2(void) {
+GameSceneEasy::~GameSceneEasy(void) {
 }
 
-void GameScene2::OnEntry(void) {
+void GameSceneEasy::OnEntry(void) {
 }
 
-void GameScene2::OnExit(void) {
+void GameSceneEasy::OnExit(void) {
 }
 
-void GameScene2::Update(void) {
-	
+void GameSceneEasy::Update(void) {
+
 	if (m_Image.transform.y == W.GetHeight() / 2 - 45) {
 		m_Image.transform.x = W.GetWidth() / 2 - 250;
 
@@ -69,7 +64,7 @@ void GameScene2::Update(void) {
 	if (IM.IsKeyUp<KEY_BUTTON_DOWN>()) Println("down arrow up");
 }
 
-void GameScene2::Draw(void) {
+void GameSceneEasy::Draw(void) {
 	m_background.Draw(); // Render background
 	m_Image.Draw();
 	//m_grid.Draw(); // Render grid*/
