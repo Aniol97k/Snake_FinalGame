@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameScene.cc" />
+    <ClCompile Include="GameScene2.cpp" />
     <ClCompile Include="Grid.cc" />
     <ClCompile Include="main.cc" />
   </ItemGroup>

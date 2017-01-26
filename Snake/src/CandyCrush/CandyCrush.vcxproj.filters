@@ -22,6 +22,9 @@
     <ClCompile Include="Grid.cc">
       <Filter>Model</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene2.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Transform.hh">

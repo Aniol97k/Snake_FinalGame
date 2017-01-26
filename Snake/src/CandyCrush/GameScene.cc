@@ -31,36 +31,15 @@ void GameScene::OnExit(void) {
 }
 
 void GameScene::Update(void) {
-	/*If's for main scene 
+	
 	if (IM.IsKeyDown<KEY_BUTTON_UP>()) {m_Image.transform.y = W.GetHeight() / 2 - 45;}
 	else if (IM.IsKeyDown<KEY_BUTTON_DOWN>()) {	m_Image.transform.y = W.GetHeight() / 2 + 30;}
 	else if (IM.IsKeyDown<KEY_BUTTON_ENTER>()) {
 		if (m_Image.transform.y == W.GetHeight() / 2 + 30) {std::exit(0);
 		}
-		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) {} //Comença el joc.
+		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) { SM.SetCurScene<GameScene2>(); } 
 	}
-	*/
-
-	//If's for difficulty selection scene
-	if (m_Image.transform.y == W.GetHeight() / 2 - 45) {
-		m_Image.transform.x = W.GetWidth() / 2 - 250;
-
-	}
-	else { m_Image.transform.x = W.GetWidth() / 2 - 180; }
 	
-	if (IM.IsKeyDown<KEY_BUTTON_UP>() && m_Image.transform.y != W.GetHeight() / 2 - 120) { m_Image.transform.y -=  75; }
-	else if (IM.IsKeyDown<KEY_BUTTON_DOWN>() && m_Image.transform.y != W.GetHeight() / 2 + 30) { m_Image.transform.y += 75; }
-	else if (IM.IsKeyDown<KEY_BUTTON_ENTER>()) {
-		if (m_Image.transform.y == W.GetHeight() / 2 + 30) {
-			// Enter easy game
-		}
-		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) {
-			//Enter medium game
-		} 
-		else if (m_Image.transform.y == W.GetHeight() / 2 - 120) {
-			//Enter hard game
-		}
-	}
 
 	static MouseCoords mouseCoords(0,0);
 	if (IM.IsMouseDown<MOUSE_BUTTON_LEFT>()) {
@@ -86,16 +65,10 @@ void GameScene::Draw(void) {
 
 	//main scene texts
 	
-	/*GUI::DrawTextSolid<FontID::FACTORY>("-SNAKE-",{ W.GetWidth() >> 1, int(W.GetHeight()*.1f),1, 1 },	{ 0, 0, 0 }); // Render score that will be different when updated
+	GUI::DrawTextSolid<FontID::FACTORY>("-SNAKE-",{ W.GetWidth() >> 1, int(W.GetHeight()*.1f),1, 1 },	{ 0, 0, 0 }); // Render score that will be different when updated
 	GUI::DrawTextSolid<FontID::FACTORY>("PLAY", { W.GetWidth() >> 1, int(W.GetHeight()*.5f), 1, 1 },{0, 0, 0});
-	GUI::DrawTextSolid<FontID::FACTORY>("EXIT", { W.GetWidth() >> 1, int(W.GetHeight()*.6f), 1, 1 }, { 0, 0, 0 });*/
+	GUI::DrawTextSolid<FontID::FACTORY>("EXIT", { W.GetWidth() >> 1, int(W.GetHeight()*.6f), 1, 1 }, { 0, 0, 0 });
 
-
-	//Second scene texts (Difficulty selection)
-	GUI::DrawTextSolid<FontID::FACTORY>("-SNAKE-", { W.GetWidth() >> 1, int(W.GetHeight()*.1f),1, 1 }, { 0, 0, 0 });
-	GUI::DrawTextSolid<FontID::FACTORY>("EASY", { W.GetWidth() >> 1, int(W.GetHeight()*.4f), 1, 1 }, { 0, 0, 0 });
-	GUI::DrawTextSolid<FontID::FACTORY>("MEDIUM", { W.GetWidth() >> 1, int(W.GetHeight()*.5f), 1, 1 }, { 0, 0, 0 });
-	GUI::DrawTextSolid<FontID::FACTORY>("HARD", { W.GetWidth() >> 1, int(W.GetHeight()*.6f), 1, 1 }, { 0, 0, 0 });
 
 	/*GUI::DrawTextBlended<FontID::FACTORY>("Score: " + std::to_string(m_score), 
 										{ W.GetWidth() >> 1, int(W.GetHeight()*.9f), 1, 1 }, 

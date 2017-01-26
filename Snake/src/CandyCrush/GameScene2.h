@@ -11,21 +11,6 @@
 // GameScene class with the main gameplay mode
 class GameScene : public Scene {
 public:
-	explicit GameScene();
-	~GameScene() override;
-	void OnEntry(void) override;
-	void OnExit(void) override;
-	void Update(void) override;
-	void Draw(void) override;
-private:
-	Grid m_grid;
-	Sprite m_background;
-	Sprite m_Image;
-	int m_score{ 0 };
-};
-
-class GameScene2 : public Scene {
-public:
 	explicit GameScene2();
 	~GameScene2() override;
 	void OnEntry(void) override;
