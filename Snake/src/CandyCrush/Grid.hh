@@ -7,7 +7,6 @@
 #pragma once
 #include "Sprite.hh"
 #include "InputManager.hh"
-
 class Grid {
 public:
 	Grid(std::string &&fileName, int cellWidth, int cellHeight);
@@ -48,6 +47,12 @@ class GridSnake {
 private:
 	Sprite**grid;
 	int cells;
+	struct COOR
+	{
+		int x;
+		int y;
+		
+	};
 public:
 
 	GridSnake(std::string difficulty, int cellWidth, int cellHeight, int cellsOnGrid) {
@@ -64,12 +69,21 @@ public:
 					i * (cellHeight + 5) + ((W.GetHeight() - cellHeight*cells) >> 1),
 					cellWidth, cellHeight };
 				grid[i][j].objectID = ObjectID::BG_CELL;
-
+				
 
 			}
 		}
+	}
+	~GridSnake(){
+	
+	}
+	
+	void GridSnake::SnakeSprite(COOR playerCoor){grid[playerCoor.x][playerCoor.y].objectID = ObjectID::SNAKE;}
 
+	void GridSnake::AppleSprite(COOR appleCoor) {grid[appleCoor.x][appleCoor.y].objectID = ObjectID::APPLE;}
 
+	void GridSnake::WallSprite(COOR wallCoor) { grid[wallCoor.x][wallCoor.y].objectID = ObjectID::WALL; }
+	}
 
 
 	}

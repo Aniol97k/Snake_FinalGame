@@ -182,3 +182,5 @@ void Grid::Draw() {
 	for (int i = 0; i < m_rows; ++i) for (int j = 0; j < m_cols; ++j) cellData[i][j].Draw();
 	for (int i = 0; i < m_rows; ++i) for (int j = 0; j < m_cols; ++j) if (CandyID(i, j) != ObjectID::CANDY_EMPTY) cellData[i][j].candy.Draw();
 }
+
+
