@@ -45,17 +45,34 @@ private:
 };
 
 class GridSnake {
-public:
-	GridSnake(int rows, int columns, int cellWidth, int chellHeight);
-	~GridSnake();
-	void Update();
-	void Draw();
 private:
-	Sprite snake;
-	Sprite apple;
-	Sprite background;
-	Sprite array[][50];
+	Sprite**grid;
+	int cells;
+public:
 
+	GridSnake(std::string difficulty, int cellWidth, int cellHeight, int cellsOnGrid) {
+		cells = cellsOnGrid;
+		grid = new Sprite *[cells];
+		for (int i = 0; i < cells; i++) {
+			grid[i] = new Sprite[cells];
+		}
+
+
+		for (int i = 0; i < cells; i++) {
+			for (int j = 0; j < cells; j++) {
+				grid[i][j].transform = { j * (+50) + ((W.GetWidth() - cellWidth*cells) >> 1),
+					i * (cellHeight + 5) + ((W.GetHeight() - cellHeight*cells) >> 1),
+					cellWidth, cellHeight };
+				grid[i][j].objectID = ObjectID::BG_CELL;
+
+
+			}
+		}
+
+
+
+
+	}
 
 
 };
