@@ -18,13 +18,6 @@ namespace GameEngine {
 		R.LoadFont<FontID::ARIAL>("fnt/arial.ttf", 40);
 		R.LoadFont<FontID::CANDY>("fnt/candy.ttf", 50);
 		R.LoadFont<FontID::FACTORY>("fnt/candsb.ttf", 80);
-		/*R.LoadTexture<ObjectID::CELL_EMPTY>("gfx/empty.png");
-		R.LoadTexture<ObjectID::CANDY_BLUE>("gfx/blue.png");
-		R.LoadTexture<ObjectID::CANDY_RED>("gfx/red.png");
-		R.LoadTexture<ObjectID::CANDY_ORANGE>("gfx/orange.png");
-		R.LoadTexture<ObjectID::CANDY_PURPLE>("gfx/purple.png");
-		R.LoadTexture<ObjectID::CANDY_GREEN>("gfx/green.png");
-		R.LoadTexture<ObjectID::CANDY_YELLOW>("gfx/yellow.png");*/
 		R.LoadTexture<ObjectID::BG_00>("gfx/bg.jpg");
 		R.LoadTexture<ObjectID::ARROW>("gfx/arrow.png");
 		R.LoadTexture<ObjectID::BG_GAME>("gfx/SnakeGameBg.png");
@@ -32,6 +25,9 @@ namespace GameEngine {
 		R.LoadTexture<ObjectID::SNAKE>("gfx/snake.png");
 		R.LoadTexture<ObjectID::APPLE>("gfx/apple.png");
 		R.LoadTexture<ObjectID::WALL>("gfx/wall.png");
+		R.LoadTexture<ObjectID::BG_DEATH>("gfx/BgDeath.png");
+		R.LoadTexture<ObjectID::FULL_HEARTH>("gfx/FullHearth.png");
+		R.LoadTexture<ObjectID::EMPTY_HEARTH>("gfx/EmptyHearth.png");
 	}
 	//! Adds the game scenes into the Scene Manager and decides which is the first screen
 	void AddScenes(void) {
