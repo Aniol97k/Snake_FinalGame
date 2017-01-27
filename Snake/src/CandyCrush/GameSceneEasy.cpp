@@ -21,11 +21,14 @@ GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS_EAS
 	m_Snake = { { 150, 150, 25, 25 }, ObjectID::SNAKE };
 	m_cellBG = { { 200, 200, 25, 25 }, ObjectID::BG_CELL };
 	std::srand(std::time(0));
+	timer = 0;
 	snakeStartx = 12;
 	snakeStarty = 12;
 	appleX = rand() % 24 + 1;
 	appleY = rand() % 24 + 1;
 	m_score = 0;
+	direction = 2;
+	moveleft = false;
 }
 
 GameSceneEasy::~GameSceneEasy(void) {
@@ -38,11 +41,27 @@ void GameSceneEasy::OnExit(void) {
 }
 
 void GameSceneEasy::Update(void) {
-	
-	if (IM.IsKeyUp<KEY_BUTTON_DOWN>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx += 1;  }
-	if (IM.IsKeyUp<KEY_BUTTON_UP>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx -= 1; }
-	if (IM.IsKeyUp<KEY_BUTTON_LEFT>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty -= 1; }
-	if (IM.IsKeyUp<KEY_BUTTON_RIGHT>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty += 1; }
+	if (IM.IsKeyDown<KEY_BUTTON_DOWN>()) {  direction = 0; }
+	if (IM.IsKeyDown<KEY_BUTTON_UP>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx -= 1; movedown = true; }
+	if (IM.IsKeyDown<KEY_BUTTON_LEFT>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty -= 1; moveleft = false; }
+	if (IM.IsKeyDown<KEY_BUTTON_RIGHT>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty += 1; moveleft = true; }
+
+	if (timer >= 0.25) {
+		switch (direction) {
+		case 0:
+			m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx += 1;
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+			
+		}
+		timer -= 0.25;
+	}
+	else { timer += TM.GetDeltaTime(); }
 	m_GridSnake.SnakeSprite(snakeStartx, snakeStarty);
 	m_GridSnake.AppleSprite(appleX, appleY);
 	m_GridSnake.WallSprite(3, 5);

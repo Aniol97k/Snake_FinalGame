@@ -53,6 +53,9 @@ private:
 	Sprite m_Snake;
 	Sprite m_cellBG;
 	GridSnake m_GridSnake;
+	float timer;
+	bool movedown;
+	bool moveleft;
 	int snakeStartx;
 	int appleX;
 	int appleY;
