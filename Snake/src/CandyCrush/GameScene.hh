@@ -48,5 +48,12 @@ public:
 private:
 	Sprite m_background;
 	Sprite m_Image;
+	Sprite m_Wall;
+	Sprite m_Apple;
+	Sprite m_Snake;
+	Sprite m_cellBG;
+	GridSnake m_GridSnake;
+	int snakeStartx;
+	int snakeStarty;
 	int m_score{ 0 };
 };

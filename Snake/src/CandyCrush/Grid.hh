@@ -55,38 +55,17 @@ private:
 	};
 public:
 
-	GridSnake(std::string difficulty, int cellWidth, int cellHeight, int cellsOnGrid) {
-		cells = cellsOnGrid;
-		grid = new Sprite *[cells];
-		for (int i = 0; i < cells; i++) {
-			grid[i] = new Sprite[cells];
-		}
-
-
-		for (int i = 0; i < cells; i++) {
-			for (int j = 0; j < cells; j++) {
-				grid[i][j].transform = { j * (+50) + ((W.GetWidth() - cellWidth*cells) >> 1),
-					i * (cellHeight + 5) + ((W.GetHeight() - cellHeight*cells) >> 1),
-					cellWidth, cellHeight };
-				grid[i][j].objectID = ObjectID::BG_CELL;
-				
-
-			}
-		}
-	}
-	~GridSnake(){
+	GridSnake(std::string difficulty, int cellWidth, int cellHeight, int cellsOnGrid); 
+	~GridSnake();
 	
-	}
+	void GridSnake::Draw(int cells);
+	void GridSnake::AppleSprite(int appleCoorx, int appleCoory);
+	void GridSnake::SnakeSprite(int snakeCoorx, int snakeCoory);
+	void GridSnake::WallSprite(int wallCoorx, int wallCoory);
+	void GridSnake::SnakeMoveX(int snakeCoorx, int snakeCoory);
+
+
 	
-	void GridSnake::SnakeSprite(COOR playerCoor){grid[playerCoor.x][playerCoor.y].objectID = ObjectID::SNAKE;}
-
-	void GridSnake::AppleSprite(COOR appleCoor) {grid[appleCoor.x][appleCoor.y].objectID = ObjectID::APPLE;}
-
-	void GridSnake::WallSprite(COOR wallCoor) { grid[wallCoor.x][wallCoor.y].objectID = ObjectID::WALL; }
-	}
-
-
-	}
 
 
 };
