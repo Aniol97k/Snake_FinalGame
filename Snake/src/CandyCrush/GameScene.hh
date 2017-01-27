@@ -18,9 +18,8 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Sprite m_background;
-	Sprite m_Image;
-	int m_score{ 0 };
+	Sprite m_background, m_Image;
+	
 };
 
 class GameSceneDiff : public Scene {
@@ -32,9 +31,8 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Sprite m_background;
-	Sprite m_Image;
-	int m_score{ 0 };
+	Sprite m_background, m_Image;
+	
 };
 
 class GameSceneEasy : public Scene {
@@ -46,20 +44,8 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Sprite m_background;
-	Sprite m_Image;
-	Sprite m_Wall;
-	Sprite m_Apple;
-	Sprite m_Snake;
-	Sprite m_cellBG;
+	Sprite m_background, m_Image, m_Wall, m_Apple,m_Snake,m_cellBG, hearth, hearthEmpty;
 	GridSnake m_GridSnake;
 	float timer;
-	bool movedown;
-	bool moveleft;
-	int snakeStartx;
-	int appleX;
-	int appleY;
-	int snakeCounter;
-	int snakeStarty;
-	int m_score{ 0 };
+	int direction,lifes,snakeStartx,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
 };
