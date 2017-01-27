@@ -3,6 +3,9 @@
 #include "System.hh"
 #include "Logger.hh"
 #include "GameScene.hh"
+#include <cstdlib>
+#include <iostream>
+#include <ctime>
 using namespace Logger;
 
 #define CELL_WIDTH 25
@@ -11,15 +14,18 @@ using namespace Logger;
 
 
 
-GameSceneEasy::GameSceneEasy(void): m_GridSnake{ "easy",CELL_WIDTH,CELL_HEIGHT,CELLS_EASY }{
+GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS_EASY }{
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	m_Wall = { { 50, 50, 25, 25 }, ObjectID::WALL };
 	m_Apple = { { 100, 100, 25, 25 }, ObjectID::APPLE };
 	m_Snake = { { 150, 150, 25, 25 }, ObjectID::SNAKE };
 	m_cellBG = { { 200, 200, 25, 25 }, ObjectID::BG_CELL };
-	snakeStartx = 3;
-	snakeStarty = 4;
-		
+	std::srand(std::time(0));
+	snakeStartx = 12;
+	snakeStarty = 12;
+	appleX = rand() % 24 + 1;
+	appleY = rand() % 24 + 1;
+	m_score = 0;
 }
 
 GameSceneEasy::~GameSceneEasy(void) {
@@ -32,13 +38,18 @@ void GameSceneEasy::OnExit(void) {
 }
 
 void GameSceneEasy::Update(void) {
-	bool keybuttondown = false;
-	if (IM.IsKeyDown<KEY_BUTTON_DOWN>()) { keybuttondown = true; }
-		
-	m_GridSnake.SnakeSprite(snakeStartx, 3); 
-	m_GridSnake.AppleSprite(3, 4);
+	
+	if (IM.IsKeyUp<KEY_BUTTON_DOWN>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx += 1;  }
+	if (IM.IsKeyUp<KEY_BUTTON_UP>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx -= 1; }
+	if (IM.IsKeyUp<KEY_BUTTON_LEFT>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty -= 1; }
+	if (IM.IsKeyUp<KEY_BUTTON_RIGHT>()) { m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty += 1; }
+	m_GridSnake.SnakeSprite(snakeStartx, snakeStarty);
+	m_GridSnake.AppleSprite(appleX, appleY);
 	m_GridSnake.WallSprite(3, 5);
+	if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) { m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE; appleX = rand() % 24 + 1; appleY = rand() % 24 + 1; snakeCounter += 1; }
+	// //if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) { m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE; appleX = rand() % 24 + 1; appleY = rand() % 24 + 1; snakeCounter += 1; }
 }
+
 
 void GameSceneEasy::Draw(void) {
 	m_background.Draw(); 

@@ -54,6 +54,9 @@ private:
 	Sprite m_cellBG;
 	GridSnake m_GridSnake;
 	int snakeStartx;
+	int appleX;
+	int appleY;
+	int snakeCounter;
 	int snakeStarty;
 	int m_score{ 0 };
 };
