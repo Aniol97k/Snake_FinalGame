@@ -44,7 +44,7 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Sprite m_background, m_Image, m_Wall, m_Apple,m_Snake,m_cellBG, hearth, hearthEmpty;
+	Sprite m_background, m_HearthFull1, m_HearthFull2, m_HearthFull3, m_Wall, m_Apple,m_Snake,m_cellBG,hearthEmpty1, hearthEmpty2, hearthEmpty3;
 	GridSnake m_GridSnake;
 	float timer;
 	int direction,walls,level,apples,appleCounter,lifes,snakeStartx, snakeSpeed,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
@@ -60,7 +60,7 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Sprite m_background, m_Image, m_Wall, m_Apple, m_Snake, m_cellBG, hearth, hearthEmpty;
+	Sprite m_background, m_HearthFull1, m_HearthFull2, m_HearthFull3,m_Wall, m_Apple, m_Snake, m_cellBG, hearthEmpty1, hearthEmpty2, hearthEmpty3;
 	GridSnake m_GridSnake;
 	float timer;
 	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
@@ -75,7 +75,7 @@ public:
 	void Update(void) override;
 	void Draw(void) override;
 private:
-	Sprite m_background, m_Image, m_Wall, m_Apple, m_Snake, m_cellBG, hearth, hearthEmpty;
+	Sprite m_background, m_HearthFull1, m_HearthFull2, m_HearthFull3, m_Wall, m_Apple, m_Snake, m_cellBG, hearthEmpty1, hearthEmpty2, hearthEmpty3;
 	GridSnake m_GridSnake;
 	float timer;
 	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };

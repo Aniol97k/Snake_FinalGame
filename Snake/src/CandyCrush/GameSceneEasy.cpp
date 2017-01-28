@@ -18,6 +18,12 @@ using namespace Logger;
 
 GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS }{
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
+	m_HearthFull1 = { { -175,-100,W.GetWidth() / 2 ,W.GetHeight()/2 }, ObjectID::FULL_HEARTH };
+	m_HearthFull2 = { { -175,20,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
+	m_HearthFull3 = { { -175,140,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
+	hearthEmpty2 = { { -175,20,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::EMPTY_HEARTH };
+	hearthEmpty3 = { { -175,140,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::EMPTY_HEARTH };
+	
 	std::srand(std::time(0));
 	timer = 0;
 	snakeStartx = SNAKEX_START;
@@ -76,18 +82,10 @@ void GameSceneEasy::Update(void) {
 	if (snakeSpeed <= 20) {
 		snakeSpeed = 35;
 	}
-	switch (lifes) {
-
-	case 3:
-		break;
-	case 2:
-		break;
-	case 1:
-		break;
-	case 0:
+	if (lifes <= 0) {
 		SM.SetCurScene<GameSceneDeath>();
-		break;
 	}
+	
 	if (timer >= snakeSpeed) {
 		switch (direction) {
 		case 0:
@@ -140,7 +138,24 @@ void GameSceneEasy::Draw(void) {
 
 	m_background.Draw(); 
 	m_GridSnake.Draw(CELLS);
-			
+	switch (lifes) {
+
+	case 3:
+		m_HearthFull1.Draw();
+		m_HearthFull2.Draw();
+		m_HearthFull3.Draw();
+		break;
+	case 2:
+		m_HearthFull1.Draw();
+		m_HearthFull2.Draw();
+		hearthEmpty3.Draw();
+		break;
+	case 1:
+		m_HearthFull1.Draw();
+		hearthEmpty2.Draw();
+		hearthEmpty3.Draw();
+		break;
+	}
 
 	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(m_score),
 	{ W.GetWidth() >> 1, int(W.GetHeight()*.05f), 1, 1 },
