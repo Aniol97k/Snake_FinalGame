@@ -47,5 +47,63 @@ private:
 	Sprite m_background, m_Image, m_Wall, m_Apple,m_Snake,m_cellBG, hearth, hearthEmpty;
 	GridSnake m_GridSnake;
 	float timer;
-	int direction,lifes,snakeStartx,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
+	int direction,walls,level,apples,appleCounter,lifes,snakeStartx, snakeSpeed,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
+};
+
+
+class GameSceneMedium : public Scene {
+public:
+	explicit GameSceneMedium();
+	~GameSceneMedium() override;
+	void OnEntry(void) override;
+	void OnExit(void) override;
+	void Update(void) override;
+	void Draw(void) override;
+private:
+	Sprite m_background, m_Image, m_Wall, m_Apple, m_Snake, m_cellBG, hearth, hearthEmpty;
+	GridSnake m_GridSnake;
+	float timer;
+	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
+};
+
+class GameSceneHard : public Scene {
+public:
+	explicit GameSceneHard();
+	~GameSceneHard() override;
+	void OnEntry(void) override;
+	void OnExit(void) override;
+	void Update(void) override;
+	void Draw(void) override;
+private:
+	Sprite m_background, m_Image, m_Wall, m_Apple, m_Snake, m_cellBG, hearth, hearthEmpty;
+	GridSnake m_GridSnake;
+	float timer;
+	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
+};
+
+
+class GameSceneDeath : public Scene {
+public:
+	explicit GameSceneDeath();
+	~GameSceneDeath() override;
+	void OnEntry(void) override;
+	void OnExit(void) override;
+	void Update(void) override;
+	void Draw(void) override;
+private:
+	Sprite m_background, m_Image;
+
+};
+
+class GameSceneWin: public Scene {
+public:
+	explicit GameSceneWin();
+	~GameSceneWin() override;
+	void OnEntry(void) override;
+	void OnExit(void) override;
+	void Update(void) override;
+	void Draw(void) override;
+private:
+	Sprite m_background, m_Image;
+
 };

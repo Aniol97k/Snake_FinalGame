@@ -28,6 +28,18 @@
     <ClCompile Include="GameSceneDiff.cpp">
       <Filter>Model</Filter>
     </ClCompile>
+    <ClCompile Include="GameSceneDeath.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneWin.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneMedium.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSceneHard.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Transform.hh">

@@ -42,11 +42,11 @@ void GameSceneDiff::Update(void) {
 	else if (IM.IsKeyDown<KEY_BUTTON_ENTER>()) {
 		if (m_Image.transform.y == W.GetHeight() / 2 + 30) {
 			// Enter hard game
-			//SM.SetCurScene<GameSceneHard>();
+			SM.SetCurScene<GameSceneHard>();
 		}
 		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) {
 			//Enter medium game
-			//SM.SetCurScene<GameSceneMedium>();
+			SM.SetCurScene<GameSceneMedium>();
 		}
 		else if (m_Image.transform.y == W.GetHeight() / 2 - 120) {
 			//Enter easy game

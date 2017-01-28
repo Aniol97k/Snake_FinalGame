@@ -10,13 +10,13 @@ using namespace Logger;
 
 #define CELL_WIDTH 25
 #define CELL_HEIGHT 25
-#define CELLS 25
-#define SPEED 150
-#define SNAKEX_START 12
-#define SNAKEY_START 12
+#define CELLS 20
+#define SPEED 125
+#define SNAKEX_START 10
+#define SNAKEY_START 10
 #define WALLS 12
 
-GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS }{
+GameSceneMedium::GameSceneMedium(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	std::srand(std::time(0));
 	timer = 0;
@@ -29,28 +29,28 @@ GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS }{
 	apples = 0;
 	level = 1;
 
-	
-}
-
-GameSceneEasy::~GameSceneEasy(void) {
 
 }
 
-void GameSceneEasy::OnEntry(void) {
+GameSceneMedium::~GameSceneMedium(void) {
+
+}
+
+void GameSceneMedium::OnEntry(void) {
 	m_score = 0;
 	lifes = 3;
 	apples = 0;
 	level = 1;
-	
+
 	snakeSpeed = SPEED;
 	//m_GridSnake.generateWalls(WALLS);
-	
+
 }
 
-void GameSceneEasy::OnExit(void) {
+void GameSceneMedium::OnExit(void) {
 }
 
-void GameSceneEasy::Update(void) {
+void GameSceneMedium::Update(void) {
 	switch (apples) {
 	case 5:
 		level = 2;
@@ -69,8 +69,8 @@ void GameSceneEasy::Update(void) {
 		snakeSpeed = 30;
 	}
 
-	if (IM.IsKeyDown<KEY_BUTTON_DOWN>() && direction !=1) {  direction = 0; }
-	if (IM.IsKeyDown<KEY_BUTTON_UP>() && direction != 0) {  direction = 1; }
+	if (IM.IsKeyDown<KEY_BUTTON_DOWN>() && direction != 1) { direction = 0; }
+	if (IM.IsKeyDown<KEY_BUTTON_UP>() && direction != 0) { direction = 1; }
 	if (IM.IsKeyDown<KEY_BUTTON_LEFT>() && direction != 3) { direction = 2; }
 	if (IM.IsKeyDown<KEY_BUTTON_RIGHT>() && direction != 2) { direction = 3; }
 	if (snakeSpeed <= 20) {
@@ -102,7 +102,7 @@ void GameSceneEasy::Update(void) {
 		case 3:
 			m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty += 1;
 			break;
-			
+
 		}
 		timer -= snakeSpeed;
 	}
@@ -111,13 +111,13 @@ void GameSceneEasy::Update(void) {
 	m_GridSnake.SnakeSprite(snakeStartx, snakeStarty);
 	m_GridSnake.AppleSprite(appleX, appleY);
 
-	if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) { 
+	if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) {
 		m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE;
-			appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
-				snakeCounter += 1; 
-				m_score += 100;
-				snakeSpeed -= 3;
-				apples += 1;
+		appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
+		snakeCounter += 1;
+		m_score += 100;
+		snakeSpeed -= 3;
+		apples += 1;
 	}
 
 	for (int k = 0; k < CELLS; k++) {
@@ -126,25 +126,26 @@ void GameSceneEasy::Update(void) {
 		m_GridSnake.grid[CELLS - 1][k].objectID = ObjectID::WALL;
 		m_GridSnake.grid[k][CELLS - 1].objectID = ObjectID::WALL;
 
-		if (m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[0][k].objectID) { 
-			snakeStartx = SNAKEX_START; snakeStarty = SNAKEY_START; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL; 
-				appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
-					lifes -= 1; }
-		if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[0][k].objectID) { 
-			appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;};
+		if (m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[0][k].objectID) {
+			snakeStartx = SNAKEX_START; snakeStarty = SNAKEY_START; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
+			appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
+			lifes -= 1;
+		}
+		if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[0][k].objectID) {
+			appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
+		};
 	}
 }
 
 
-void GameSceneEasy::Draw(void) {
+void GameSceneMedium::Draw(void) {
 
-	m_background.Draw(); 
+	m_background.Draw();
 	m_GridSnake.Draw(CELLS);
-			
+
 
 	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(m_score),
 	{ W.GetWidth() >> 1, int(W.GetHeight()*.05f), 1, 1 },
-	{ 0, 0, 0 }); 
-	
-}
+	{ 0, 0, 0 });
 
+}

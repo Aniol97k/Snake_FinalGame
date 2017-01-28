@@ -33,7 +33,11 @@ namespace GameEngine {
 	void AddScenes(void) {
 		SM.AddScene<GameSceneMenu>();
 		SM.AddScene<GameSceneEasy>();
+		SM.AddScene<GameSceneMedium>();
+		SM.AddScene<GameSceneHard>();
 		SM.AddScene<GameSceneDiff>();
+		SM.AddScene<GameSceneDeath>();
+		SM.AddScene<GameSceneWin>();
 		SM.SetCurScene<GameSceneMenu>();
 	}
 	/** 

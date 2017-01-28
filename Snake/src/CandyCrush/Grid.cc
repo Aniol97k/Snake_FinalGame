@@ -21,14 +21,6 @@ GridSnake::GridSnake(int cellWidth, int cellHeight, int cellsOnGrid)
 						cellWidth, cellHeight };
 				grid[i][j].objectID = ObjectID::BG_CELL;	}	
 		}	
-
-		for (int k = 0; k < cells; k++) {
-			grid[0][k].objectID = ObjectID::WALL;
-			grid[k][0].objectID = ObjectID::WALL;
-			grid[cells - 1][k].objectID = ObjectID::WALL;
-			grid[k][cells - 1].objectID = ObjectID::WALL;
-		}
-
 	
 
 	
@@ -64,6 +56,14 @@ void GridSnake::SnakeMoveX(int snakeCoorx, int snakeCoory) {
 void GridSnake::BGSprite(int bgX, int bgY) {
 
 	grid[bgX][bgY].objectID = ObjectID::BG_CELL;
+}
+
+void::GridSnake::generateWalls(int number) {
+
+	for (int i = 0; i < number; i++) {
+		std::srand(std::time(0));
+		grid[rand() % (number - 1) + 1][rand() % (number - 1) + 1].objectID = ObjectID::WALL;
+	}
 }
 
 

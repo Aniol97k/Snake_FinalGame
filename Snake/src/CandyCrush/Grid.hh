@@ -47,12 +47,6 @@ class GridSnake {
 public:
 	Sprite**grid;
 	int cells;
-	struct COOR
-	{
-		int x;
-		int y;
-		
-	};
 public:
 
 	GridSnake(int cellWidth, int cellHeight, int cellsOnGrid); 
@@ -64,6 +58,7 @@ public:
 	void GridSnake::WallSprite(int wallCoorx, int wallCoory);
 	void GridSnake::BGSprite(int bgX, int bgY);
 	void GridSnake::SnakeMoveX(int snakeCoorx, int snakeCoory);
+	void GridSnake::generateWalls(int number);
 
 
 

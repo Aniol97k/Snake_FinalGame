@@ -19,9 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameSceneDeath.cpp" />
+    <ClCompile Include="GameSceneHard.cpp" />
+    <ClCompile Include="GameSceneMedium.cpp" />
     <ClCompile Include="GameSceneMenu.cc" />
     <ClCompile Include="GameSceneDiff.cpp" />
     <ClCompile Include="GameSceneEasy.cpp" />
+    <ClCompile Include="GameSceneWin.cpp" />
     <ClCompile Include="Grid.cc" />
     <ClCompile Include="main.cc" />
   </ItemGroup>
