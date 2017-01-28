@@ -102,6 +102,12 @@
     <ClInclude Include="XMLFile.h">
       <Filter>Model</Filter>
     </ClInclude>
+    <ClInclude Include="XMLFile2.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLFile3.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="XMLFile.xml">

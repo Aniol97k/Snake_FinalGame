@@ -50,6 +50,8 @@
     <ClInclude Include="Transform.hh" />
     <ClInclude Include="Window.hh" />
     <ClInclude Include="XMLFile.h" />
+    <ClInclude Include="XMLFile2.h" />
+    <ClInclude Include="XMLFile3.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="XMLFile.xml" />

@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
-#include "XMLFile.h"
+#include "XMLFile3.h"
 using namespace Logger;
 
 #define CELL_WIDTH 25
@@ -15,7 +15,7 @@ using namespace Logger;
 
 
 GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
-	ReadXML(2, &cellsH, &speedH, &snakeXH, &snakeYH);
+	ReadXML3(&cellsH, &speedH, &snakeXH, &snakeYH);
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	m_HearthFull1 = { { -50,0,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
 	m_HearthFull2 = { { -50,120,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
@@ -47,8 +47,7 @@ void GameSceneHard::OnEntry(void) {
 	level = 1;
 
 	snakeSpeed = speedH;
-	//m_GridSnake.generateWalls(WALLS);
-
+	
 }
 
 void GameSceneHard::OnExit(void) {

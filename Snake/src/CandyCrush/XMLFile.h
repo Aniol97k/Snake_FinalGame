@@ -21,7 +21,7 @@ using namespace Logger;
 using namespace std;
 
 
-void ReadXML(int level, int *cells, int* speed, int* snakeX, int*snakeY) {
+void ReadXML(int *cells, int* speed, int* snakeX, int*snakeY) {
 		
 		xml_document<> doc;
 		ifstream file("XMLFile.xml");
@@ -36,7 +36,7 @@ void ReadXML(int level, int *cells, int* speed, int* snakeX, int*snakeY) {
 		
 		for (rapidxml::xml_node<> *pNode = pRoot->first_node("nivell"); pNode; pNode = pNode->next_sibling()) {
 			rapidxml::xml_attribute<>*pAttr = pNode->first_attribute();
-			if (i == level) {
+			if (i == 1) {
 				for (rapidxml::xml_node<> *pNodeI = pNode->first_node(); pNodeI; pNodeI = pNodeI->next_sibling()) {
 					if (strcmp(pNodeI->name(), "cells") == 0) {
 						*cells = strtoumax(pNodeI->value(), NULL, 10);

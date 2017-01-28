@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
-#include "XMLFile.h"
+#include "XMLFile2.h"
 using namespace Logger;
 
 #define CELL_WIDTH 25
@@ -14,7 +14,7 @@ using namespace Logger;
 #define CELLS 20
 
 GameSceneMedium::GameSceneMedium(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
-	ReadXML(2, &cellsM, &speedM, &snakeXM, &snakeYM);
+	ReadXML2(&cellsM, &speedM, &snakeXM, &snakeYM);
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	m_HearthFull1 = { { -150,-50,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
 	m_HearthFull2 = { { -150,70,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
