@@ -99,5 +99,13 @@
     <ClInclude Include="IOManager.hh">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="XMLFile.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="XMLFile.xml">
+      <Filter>Model</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

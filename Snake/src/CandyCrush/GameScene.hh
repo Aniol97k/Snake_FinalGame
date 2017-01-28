@@ -48,6 +48,7 @@ private:
 	GridSnake m_GridSnake;
 	float timer;
 	int direction,walls,level,apples,appleCounter,lifes,snakeStartx, snakeSpeed,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
+	int cells, snakeX, snakeY, speed;
 };
 
 
@@ -64,6 +65,7 @@ private:
 	GridSnake m_GridSnake;
 	float timer;
 	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
+	int cellsM, snakeXM, snakeYM, speedM;
 };
 
 class GameSceneHard : public Scene {
@@ -79,6 +81,7 @@ private:
 	GridSnake m_GridSnake;
 	float timer;
 	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
+	int cellsH, snakeXH, snakeYH, speedH;
 };
 
 

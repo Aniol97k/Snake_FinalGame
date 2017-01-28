@@ -21,6 +21,8 @@ GridSnake::GridSnake(int cellWidth, int cellHeight, int cellsOnGrid)
 						cellWidth, cellHeight };
 				grid[i][j].objectID = ObjectID::BG_CELL;	}	
 		}	
+
+		
 	
 
 	

@@ -6,17 +6,16 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include "XMLFile.h"
 using namespace Logger;
 
 #define CELL_WIDTH 25
 #define CELL_HEIGHT 25
 #define CELLS 15
-#define SPEED 100
-#define SNAKEX_START 7
-#define SNAKEY_START 7
-#define WALLS 12
+
 
 GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
+	ReadXML(2, &cellsH, &speedH, &snakeXH, &snakeYH);
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	m_HearthFull1 = { { -50,0,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
 	m_HearthFull2 = { { -50,120,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
@@ -25,12 +24,12 @@ GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS }
 	hearthEmpty3 = { { -50,240,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::EMPTY_HEARTH };
 	std::srand(std::time(0));
 	timer = 0;
-	snakeStartx = SNAKEX_START;
-	snakeStarty = SNAKEY_START;
-	appleX = rand() % (CELLS - 1) + 1;
-	appleY = rand() % (CELLS - 1) + 1;
+	snakeStartx = snakeXH;
+	snakeStarty = snakeYH;
+	appleX = rand() % (cellsH - 1) + 1;
+	appleY = rand() % (cellsH - 1) + 1;
 	direction = 3;
-	snakeSpeed = SPEED;
+	snakeSpeed = speedH;
 	apples = 0;
 	level = 1;
 
@@ -47,7 +46,7 @@ void GameSceneHard::OnEntry(void) {
 	apples = 0;
 	level = 1;
 
-	snakeSpeed = SPEED;
+	snakeSpeed = speedH;
 	//m_GridSnake.generateWalls(WALLS);
 
 }
@@ -118,26 +117,26 @@ void GameSceneHard::Update(void) {
 
 	if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) {
 		m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE;
-		appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
+		appleX = rand() % (cellsH - 1) + 1; appleY = rand() % (cellsH - 1) + 1;
 		snakeCounter += 1;
 		m_score += 100;
 		snakeSpeed -= 3;
 		apples += 1;
 	}
 
-	for (int k = 0; k < CELLS; k++) {
+	for (int k = 0; k < cellsH; k++) {
 		m_GridSnake.grid[0][k].objectID = ObjectID::WALL;
 		m_GridSnake.grid[k][0].objectID = ObjectID::WALL;
-		m_GridSnake.grid[CELLS - 1][k].objectID = ObjectID::WALL;
-		m_GridSnake.grid[k][CELLS - 1].objectID = ObjectID::WALL;
+		m_GridSnake.grid[cellsH - 1][k].objectID = ObjectID::WALL;
+		m_GridSnake.grid[k][cellsH - 1].objectID = ObjectID::WALL;
 
 		if (m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[0][k].objectID) {
-			snakeStartx = SNAKEX_START; snakeStarty = SNAKEY_START; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
-			appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
+			snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
+			appleX = rand() % (cellsH - 1) + 1; appleY = rand() % (cellsH - 1) + 1;
 			lifes -= 1;
 		}
 		if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[0][k].objectID) {
-			appleX = rand() % (CELLS - 1) + 1; appleY = rand() % (CELLS - 1) + 1;
+			appleX = rand() % (cellsH - 1) + 1; appleY = rand() % (cellsH - 1) + 1;
 		};
 	}
 }
@@ -146,7 +145,7 @@ void GameSceneHard::Update(void) {
 void GameSceneHard::Draw(void) {
 
 	m_background.Draw();
-	m_GridSnake.Draw(CELLS);
+	m_GridSnake.Draw(cellsH);
 
 	switch (lifes) {
 

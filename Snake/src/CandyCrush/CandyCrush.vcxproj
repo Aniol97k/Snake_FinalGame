@@ -49,6 +49,10 @@
     <ClInclude Include="TimeManager.hh" />
     <ClInclude Include="Transform.hh" />
     <ClInclude Include="Window.hh" />
+    <ClInclude Include="XMLFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="XMLFile.xml" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9450E5FA-C335-4BA6-AD40-7AADDBE3DDD6}</ProjectGuid>
