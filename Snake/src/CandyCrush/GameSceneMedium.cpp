@@ -25,8 +25,8 @@ GameSceneMedium::GameSceneMedium(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CEL
 	timer = 0;
 	snakeStartx = snakeXM;
 	snakeStarty = snakeYM;
-	appleX = rand() % (cellsM - 1) + 1;
-	appleY = rand() % (cellsM - 1) + 1;
+	appleX = rand() % (cellsM - 2) + 1;
+	appleY = rand() % (cellsM - 2) + 1;
 	direction = 3;
 	snakeSpeed = speedM;
 	apples = 0;
@@ -44,6 +44,7 @@ void GameSceneMedium::OnEntry(void) {
 	lifes = 3;
 	apples = 0;
 	level = 1;
+	direction = 3;
 
 	snakeSpeed = speedM;
 	//m_GridSnake.generateWalls(WALLS);
@@ -116,7 +117,7 @@ void GameSceneMedium::Update(void) {
 
 	if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) {
 		m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE;
-		appleX = rand() % (cellsM - 1) + 1; appleY = rand() % (cellsM - 1) + 1;
+		appleX = rand() % (cellsM - 2) + 1; appleY = rand() % (cellsM - 2) + 1;
 		snakeCounter += 1;
 		m_score += 100;
 		snakeSpeed -= 3;
@@ -124,19 +125,15 @@ void GameSceneMedium::Update(void) {
 	}
 
 	for (int k = 0; k < cellsM; k++) {
-		m_GridSnake.grid[0][k].objectID = ObjectID::WALL;
-		m_GridSnake.grid[k][0].objectID = ObjectID::WALL;
-		m_GridSnake.grid[cellsM - 1][k].objectID = ObjectID::WALL;
-		m_GridSnake.grid[k][cellsM - 1].objectID = ObjectID::WALL;
-
-		if (m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[0][k].objectID) {
+		if (m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[0][k].objectID || m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[k][0].objectID ||
+			m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[cellsM - 1][k].objectID || m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[k][cellsM - 1].objectID) {
+			m_GridSnake.grid[snakeStartx][snakeStarty].objectID = ObjectID::WALL;
 			snakeStartx = snakeXM; snakeStarty = snakeYM; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
-			appleX = rand() % (cellsM - 1) + 1; appleY = rand() % (cellsM - 1) + 1;
+			appleX = rand() % (cellsM - 2) + 1; appleY = rand() % (cellsM - 2) + 1;
 			lifes -= 1;
+			direction = 3;
+
 		}
-		if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[0][k].objectID) {
-			appleX = rand() % (cellsM - 1) + 1; appleY = rand() % (cellsM - 1) + 1;
-		};
 	}
 }
 

@@ -16,7 +16,7 @@ using namespace Logger;
 
 
 GameSceneWin::GameSceneWin(void) {
-	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_00 };
+	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_WIN };
 	int arrowHeight = W.GetHeight() / 2 - 45;
 	m_Image = { { W.GetWidth() / 2 - 180, arrowHeight,90,90 }, ObjectID::ARROW };
 }
