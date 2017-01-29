@@ -106,7 +106,7 @@ void GameSceneMedium::Update(void){
 				Xpos[0] = snakeStartx;
 				Ypos[0] = snakeStarty;
 
-				for (int i = 0; i < 25; i++) {
+				for (int i = 0; i < APPLES; i++) {
 					lastX2 = Xpos[i];
 					lastY2 = Ypos[i];
 					Xpos[i] = lastX;
