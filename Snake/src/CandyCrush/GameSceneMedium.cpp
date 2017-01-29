@@ -60,7 +60,7 @@ void GameSceneMedium::Update(void) {
 		level = 2;
 		snakeCounter -= 5;
 		break;
-	case 10:
+	case 12:
 		level = 3;
 		snakeCounter -= 5;
 		break;
