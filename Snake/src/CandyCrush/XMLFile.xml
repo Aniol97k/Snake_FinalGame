@@ -6,21 +6,21 @@
 		<speed>150</speed>
 		<snakeX>12</snakeX>
 		<snakeY>12</snakeY>
-	</nivell>
+  </nivell>
 
 	<nivell diff = "medium">
 		<cells>20</cells>
 		<speed>135</speed>
 		<snakeX>10</snakeX>
 		<snakeY>10</snakeY>
-	</nivell>
+   </nivell>
 
 	<nivell diff = "hard">
 		<cells>15</cells>
 		<speed>120</speed>
 		<snakeX>7</snakeX>
 		<snakeY>7</snakeY>
-	</nivell>
+   </nivell>
 
 </Nivells>
 

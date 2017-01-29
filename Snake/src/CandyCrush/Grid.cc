@@ -47,6 +47,10 @@ void GridSnake::SnakeSprite(int snakeCoorx, int snakeCoory) {
 	grid[snakeCoorx][snakeCoory].objectID = ObjectID::SNAKE;
 }
 
+void GridSnake::SnakeSpriteHead(int snakeCoorx, int snakeCoory) {
+	grid[snakeCoorx][snakeCoory].objectID = ObjectID::SNAKE_HEAD;
+}
+
 void GridSnake::AppleSprite(int appleCoorx, int appleCoory) {
 	grid[appleCoorx][appleCoory].objectID = ObjectID::APPLE;
 
@@ -54,13 +58,12 @@ void GridSnake::AppleSprite(int appleCoorx, int appleCoory) {
 
 void GridSnake::WallSprite(int wallCoorx, int wallCoory) {
 	grid[wallCoorx][wallCoory].objectID = ObjectID::WALL;
+	
 
 }
 
-void GridSnake::SnakeMoveX(int snakeCoorx, int snakeCoory) {
-	grid[snakeCoorx][snakeCoory].objectID = ObjectID::BG_CELL;
-	grid[snakeCoorx + 1][snakeCoory].objectID = ObjectID::SNAKE;
-}
+void GridSnake::AddSnake() {}
+
 void GridSnake::BGSprite(int bgX, int bgY) {
 
 	grid[bgX][bgY].objectID = ObjectID::BG_CELL;

@@ -12,6 +12,7 @@ using namespace Logger;
 #define CELL_WIDTH 25
 #define CELL_HEIGHT 25
 #define CELLS 15
+#define APPLES 25
 
 
 GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
@@ -22,6 +23,7 @@ GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS }
 	m_HearthFull3 = { { -50,240,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
 	hearthEmpty2 = { { -50,120,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::EMPTY_HEARTH };
 	hearthEmpty3 = { { -50,240,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::EMPTY_HEARTH };
+	
 	std::srand(std::time(0));
 	timer = 0;
 	snakeStartx = snakeXH;
@@ -32,6 +34,12 @@ GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS }
 	snakeSpeed = speedH;
 	apples = 0;
 	level = 1;
+	snakeCounter = 0;
+	lastX = snakeXH;
+	lastY = snakeYH;
+	Xpos[0] = snakeStartx;
+	Ypos[0] = snakeStarty;
+	keyPressed = false;
 
 
 }
@@ -46,8 +54,10 @@ void GameSceneHard::OnEntry(void) {
 	apples = 0;
 	level = 1;
 	direction = 3;
-
 	snakeSpeed = speedH;
+	snakeCounter = 0;
+	keyPressed = false;
+
 	
 }
 
@@ -56,15 +66,13 @@ void GameSceneHard::OnExit(void) {
 
 void GameSceneHard::Update(void) {
 	switch (apples) {
-	case 5:
+	case APPLES - 20:
 		level = 2;
-		snakeCounter -= 5;
 		break;
-	case 12:
+	case APPLES - 13:
 		level = 3;
-		snakeCounter -= 5;
 		break;
-	case 25:
+	case APPLES:
 		SM.SetCurScene<GameSceneWin>();
 		break;
 	}
@@ -72,57 +80,98 @@ void GameSceneHard::Update(void) {
 	if (snakeSpeed <= 30) {
 		snakeSpeed = 30;
 	}
-
-	if (IM.IsKeyDown<KEY_BUTTON_DOWN>() && direction != 1) { direction = 0; }
-	if (IM.IsKeyDown<KEY_BUTTON_UP>() && direction != 0) { direction = 1; }
-	if (IM.IsKeyDown<KEY_BUTTON_LEFT>() && direction != 3) { direction = 2; }
-	if (IM.IsKeyDown<KEY_BUTTON_RIGHT>() && direction != 2) { direction = 3; }
+	for (int i = 1; i < cellsH - 1; i++) {
+		for (int j = 1; j < cellsH - 1; j++) {
+			if (m_GridSnake.grid[i][j].objectID == ObjectID::SNAKE || m_GridSnake.grid[i][j].objectID == ObjectID::SNAKE_HEAD) {
+				m_GridSnake.grid[i][j].objectID = ObjectID::BG_CELL;
+			}
+		}
+	}
+	if (IM.IsKeyDown<KEY_BUTTON_DOWN>() && direction != 1) { direction = 0; keyPressed = true; }
+	if (IM.IsKeyDown<KEY_BUTTON_UP>() && direction != 0) {	direction = 1; keyPressed = true; }
+	if (IM.IsKeyDown<KEY_BUTTON_LEFT>() && direction != 3) { direction = 2; keyPressed = true;}
+	if (IM.IsKeyDown<KEY_BUTTON_RIGHT>() && direction != 2) { direction = 3; keyPressed = true;}
 	if (snakeSpeed <= 20) {
 		snakeSpeed = 35;
 	}
-	switch (lifes) {
 
-	case 3:
-		break;
-	case 2:
-		break;
-	case 1:
-		break;
-	case 0:
+	if (lifes <= 0) {
 		SM.SetCurScene<GameSceneDeath>();
-		break;
 	}
-	if (timer >= snakeSpeed) {
-		switch (direction) {
-		case 0:
-			m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx += 1;
-			break;
-		case 1:
-			m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStartx -= 1;
-			break;
-		case 2:
-			m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty -= 1;
-			break;
-		case 3:
-			m_GridSnake.BGSprite(snakeStartx, snakeStarty); snakeStarty += 1;
-			break;
 
+	if (keyPressed == true) {
+		if (timer >= snakeSpeed) {
+			lastX = Xpos[0];
+			lastY = Ypos[0];
+			Xpos[0] = snakeStartx;
+			Ypos[0] = snakeStarty;
+
+			for (int i = 0; i < 25; i++) {
+				lastX2 = Xpos[i];
+				lastY2 = Ypos[i];
+				Xpos[i] = lastX;
+				Ypos[i] = lastY;
+				lastX = lastX2;
+				lastY = lastY2;
+			}
+
+			switch (direction) {
+			case 0:
+				snakeStartx += 1;
+				break;
+			case 1:
+				snakeStartx -= 1;
+				break;
+			case 2:
+				snakeStarty -= 1;
+				break;
+			case 3:
+				snakeStarty += 1;
+				break;
+
+			}
+			timer -= snakeSpeed;
 		}
-		timer -= snakeSpeed;
+		else { timer += TM.GetDeltaTime(); }
 	}
-	else { timer += TM.GetDeltaTime(); }
 
-	m_GridSnake.SnakeSprite(snakeStartx, snakeStarty);
+	m_GridSnake.SnakeSpriteHead(snakeStartx, snakeStarty);
+
+	for (int i = 1; i < snakeCounter + 1; i++) {
+		m_GridSnake.SnakeSprite(Xpos[i], Ypos[i]);
+	}
+
 	m_GridSnake.AppleSprite(appleX, appleY);
 
+
 	if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) {
-		m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE;
+		m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE_HEAD;
 		appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 		snakeCounter += 1;
 		m_score += 100;
 		snakeSpeed -= 3;
 		apples += 1;
+
 	}
+
+	if (m_GridSnake.grid[appleX][appleY].objectID == ObjectID::SNAKE) {
+		appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
+	}
+
+	if (m_GridSnake.grid[snakeStartx][snakeStarty].objectID == ObjectID::SNAKE) {
+		snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
+		appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
+		lifes -= 1;
+		if (m_score >= 100) { m_score -= 100; }
+		for (int i = 1; i < APPLES; i++) {
+			Xpos[i] = 0;
+			Ypos[i] = 0;
+		}
+		keyPressed = false;
+		direction = 3;
+
+	}
+
 
 	for (int k = 0; k < cellsH; k++) {
 		if (m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[0][k].objectID || m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[k][0].objectID ||
@@ -131,12 +180,17 @@ void GameSceneHard::Update(void) {
 			snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 			lifes -= 1;
+			if (m_score >= 100) { m_score -= 100; }
+			for (int i = 1; i < APPLES; i++) {
+				Xpos[i] = 0;
+				Ypos[i] = 0;
+			}
+			keyPressed = false;
 			direction = 3;
 
 		}
 	}
 }
-
 
 void GameSceneHard::Draw(void) {
 

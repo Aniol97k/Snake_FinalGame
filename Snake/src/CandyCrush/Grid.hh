@@ -23,7 +23,8 @@ public:
 	void GridSnake::SnakeSprite(int snakeCoorx, int snakeCoory);
 	void GridSnake::WallSprite(int wallCoorx, int wallCoory);
 	void GridSnake::BGSprite(int bgX, int bgY);
-	void GridSnake::SnakeMoveX(int snakeCoorx, int snakeCoory);
+	void GridSnake::AddSnake();
+	void GridSnake::SnakeSpriteHead(int snakeCoorx, int snakeCoory);
 	void GridSnake::generateWalls(int number);
 
 	

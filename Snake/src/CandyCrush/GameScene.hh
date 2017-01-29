@@ -8,6 +8,7 @@
 #include "Grid.hh"
 #include "Scene.hh"
 
+
 // GameScene class with the main gameplay mode
 class GameSceneMenu : public Scene {
 public:
@@ -48,7 +49,10 @@ private:
 	GridSnake m_GridSnake;
 	float timer;
 	int direction,walls,level,apples,appleCounter,lifes,snakeStartx, snakeSpeed,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
-	int cells, snakeX, snakeY, speed;
+	int cells, snakeX, snakeY, speed, lastX, lastY, lastX2, lastY2;
+	int Xpos[50];
+	int Ypos[50];
+	bool keyPressed;
 };
 
 
@@ -65,7 +69,10 @@ private:
 	GridSnake m_GridSnake;
 	float timer;
 	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
-	int cellsM, snakeXM, snakeYM, speedM;
+	int cellsM, snakeXM, snakeYM, speedM, lastX, lastY, lastX2, lastY2;
+	int Xpos[50];
+	int Ypos[50];
+	bool keyPressed;
 };
 
 class GameSceneHard : public Scene {
@@ -81,7 +88,10 @@ private:
 	GridSnake m_GridSnake;
 	float timer;
 	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
-	int cellsH, snakeXH, snakeYH, speedH;
+	int cellsH, snakeXH, snakeYH, speedH, lastX, lastY, lastX2, lastY2;
+	int Xpos[50];
+	int Ypos[50];
+	bool keyPressed;
 };
 
 

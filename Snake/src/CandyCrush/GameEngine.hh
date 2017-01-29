@@ -29,6 +29,7 @@ namespace GameEngine {
 		R.LoadTexture<ObjectID::FULL_HEARTH>("gfx/FullHearth.png");
 		R.LoadTexture<ObjectID::EMPTY_HEARTH>("gfx/EmptyHearth.png");
 		R.LoadTexture<ObjectID::BG_WIN>("gfx/BgWin.png");
+		R.LoadTexture<ObjectID::SNAKE_HEAD>("gfx/snake.png");
 	}
 	//! Adds the game scenes into the Scene Manager and decides which is the first screen
 	void AddScenes(void) {
