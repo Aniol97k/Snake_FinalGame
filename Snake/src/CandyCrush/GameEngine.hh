@@ -22,7 +22,7 @@ namespace GameEngine {
 		R.LoadTexture<ObjectID::FULL_HEARTH>("gfx/FullHearth.png");
 		R.LoadTexture<ObjectID::EMPTY_HEARTH>("gfx/EmptyHearth.png");
 		R.LoadTexture<ObjectID::BG_WIN>("gfx/BgWin.png");
-		R.LoadTexture<ObjectID::SNAKE_HEAD>("gfx/snake.png");
+		R.LoadTexture<ObjectID::SNAKE_HEAD>("gfx/snakeHead.png");
 		R.LoadTexture<ObjectID::BAR>("gfx/bar.png");
 	}
 
