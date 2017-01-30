@@ -1,13 +1,7 @@
-/******************************************************************
-* Copyright (C) 2016 Jordi Serrano Berbel <jsberbel95@gmail.com> *
-* This can not be copied, modified and/or distributed without    *
-* express permission of the copyright owner.                     *
-******************************************************************/
-
 #pragma once
 #include <SDL/SDL.h>
 
-// Color structure used for UIObject purposes
+
 struct Color {
 	union {
 		SDL_Color col;

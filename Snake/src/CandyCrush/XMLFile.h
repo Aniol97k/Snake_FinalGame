@@ -21,6 +21,7 @@ using namespace Logger;
 using namespace std;
 
 
+//Function that reads all XML variables for each level/difficulty
 void ReadXML(int *cells, int* speed, int* snakeX, int*snakeY, int *timer) {
 		
 		xml_document<> doc;
@@ -34,11 +35,12 @@ void ReadXML(int *cells, int* speed, int* snakeX, int*snakeY, int *timer) {
 		xml_node<> *pRoot = doc.first_node();
 		int i = 1;
 		
+		//For that goes trough every node and it's children the get the value
 		for (rapidxml::xml_node<> *pNode = pRoot->first_node("nivell"); pNode; pNode = pNode->next_sibling()) {
 			rapidxml::xml_attribute<>*pAttr = pNode->first_attribute();
-			if (i == 1) {
+			if (i == 1) { //If it's '1' gets all the variables of the level one, '2' for second level and '3' for the hardest one.
 				for (rapidxml::xml_node<> *pNodeI = pNode->first_node(); pNodeI; pNodeI = pNodeI->next_sibling()) {
-					if (strcmp(pNodeI->name(), "cells") == 0) {
+					if (strcmp(pNodeI->name(), "cells") == 0) { //If it's equal to 0 it mean it has the same name/string
 						*cells = strtoumax(pNodeI->value(), NULL, 10);
 					}
 					else if (strcmp(pNodeI->name(), "speed") == 0) {

@@ -1,9 +1,3 @@
-/******************************************************************
-* Copyright (C) 2016 Jordi Serrano Berbel <jsberbel95@gmail.com> *
-* This can not be copied, modified and/or distributed without    *
-* express permission of the copyright owner.                     *
-******************************************************************/
-
 #pragma once
 
 // Enum state fot each Scene in the Game

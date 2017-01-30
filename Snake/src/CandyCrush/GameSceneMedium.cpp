@@ -14,6 +14,8 @@ using namespace Logger;
 #define CELLS 20
 #define APPLES 25
 
+//READ FIRST COMMENT ON "GameSceneEasy.cpp"
+
 GameSceneMedium::GameSceneMedium(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
 	ReadXML2(&cellsM, &speedM, &snakeXM, &snakeYM, &timerXMLM);
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };

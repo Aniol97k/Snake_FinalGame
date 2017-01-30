@@ -19,7 +19,7 @@ public:
 	}
 	void FPSEnd(std::function<void()> drawFunction) {
 		if (renderTime >= SCREEN_TICKS_PER_FRAME) drawFunction(), renderTime -= SCREEN_TICKS_PER_FRAME;
-		renderTime += m_deltatime; // Updates the render timer
+		renderTime += m_deltatime; 
 	}
 	Uint32 GetCurTime() { return SDL_GetTicks(); };
 	inline float GetDeltaTime() { return m_deltatime; };
@@ -28,7 +28,7 @@ private:
 	TimeManager(const TimeManager &rhs) = delete;
 	TimeManager &operator=(const TimeManager &rhs) = delete;
 private:
-	float m_deltatime{ .0f }; // Delta time in seconds
-	Uint32 lastTime{ SDL_GetTicks() }; // Last time sample in seconds
-	float renderTime{ 0.0f }; // Time control for rendering
+	float m_deltatime{ .0f }; 
+	Uint32 lastTime{ SDL_GetTicks() }; 
+	float renderTime{ 0.0f }; 
 };

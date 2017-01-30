@@ -20,6 +20,7 @@ using namespace rapidxml;
 using namespace Logger;
 using namespace std;
 
+//READ COMMENTS ON "XMLFile.h"
 
 void ReadXML2(int *cells, int* speed, int* snakeX, int*snakeY, int* timer) {
 

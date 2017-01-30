@@ -1,9 +1,3 @@
-/******************************************************************
-* Copyright (C) 2016 Jordi Serrano Berbel <jsberbel95@gmail.com> *
-* This can not be copied, modified and/or distributed without    *
-* express permission of the copyright owner.                     *
-******************************************************************/
-
 #pragma once
 #include "Scene.hh"
 #include "Assert.hh"
@@ -12,7 +6,7 @@
 
 #define SM SceneManager::Instance()
 
-// SceneManager class to store and control the whole game scenes
+
 class SceneManager {
 public:
 	~SceneManager() { for (auto &scene : m_scenes) delete scene.second; }
@@ -43,6 +37,6 @@ private:
 		return (scene != m_scenes.end()) ? dynamic_cast<S*>(scene->second) : nullptr;
 	}
 private:
-	std::unordered_map<std::type_index, Scene*> m_scenes;	// Array of screens
-	Scene *m_curScene{ nullptr };							// Pointer to the current scene
+	std::unordered_map<std::type_index, Scene*> m_scenes;	
+	Scene *m_curScene{ nullptr };							
 };

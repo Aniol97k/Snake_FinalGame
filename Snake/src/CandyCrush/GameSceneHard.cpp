@@ -14,6 +14,7 @@ using namespace Logger;
 #define CELLS 15
 #define APPLES 25
 
+//READ FIRST COMMENT ON "GameSceneEasy.cpp"
 
 GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
 	ReadXML3(&cellsH, &speedH, &snakeXH, &snakeYH, &timerXMLH);

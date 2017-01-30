@@ -1,13 +1,8 @@
- /******************************************************************
-* Copyright (C) 2016 Jordi Serrano Berbel <jsberbel95@gmail.com> *
-* This can not be copied, modified and/or distributed without    *
-* express permission of the copyright owner.                     *
-******************************************************************/
-
 #pragma once
 #include "Sprite.hh"
 #include "InputManager.hh"
 
+//Class GridSnake implementation of the varaibles and functions
 
 class GridSnake {
 public:
