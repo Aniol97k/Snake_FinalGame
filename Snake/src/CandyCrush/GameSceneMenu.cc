@@ -40,7 +40,6 @@ void GameSceneMenu::Draw(void) {
 	m_background.Draw(); 
 	m_Image.Draw();
 
-
 	GUI::DrawTextSolid<FontID::FACTORY>("-SNAKE-",{ W.GetWidth() >> 1, int(W.GetHeight()*.1f),1, 1 },	{ 0, 0, 0 }); 
 	GUI::DrawTextSolid<FontID::FACTORY>("PLAY", { W.GetWidth() >> 1, int(W.GetHeight()*.5f), 1, 1 },{0, 0, 0});
 	GUI::DrawTextSolid<FontID::FACTORY>("EXIT", { W.GetWidth() >> 1, int(W.GetHeight()*.6f), 1, 1 }, { 0, 0, 0 });

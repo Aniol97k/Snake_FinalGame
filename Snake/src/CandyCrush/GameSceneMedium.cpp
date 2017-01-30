@@ -149,7 +149,6 @@ void GameSceneMedium::Update(void){
 
 		m_GridSnake.AppleSprite(appleX, appleY);
 
-
 		if (m_GridSnake.grid[appleX][appleY].objectID == m_GridSnake.grid[snakeStartx][snakeStarty].objectID) {
 			m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE_HEAD;
 			appleX = rand() % (cellsM - 2) + 1; appleY = rand() % (cellsM - 2) + 1;

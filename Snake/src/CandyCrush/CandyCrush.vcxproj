@@ -28,6 +28,7 @@
     <ClCompile Include="GameSceneWin.cpp" />
     <ClCompile Include="Grid.cc" />
     <ClCompile Include="main.cc" />
+    <ClCompile Include="Ranking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assert.hh" />
@@ -39,6 +40,7 @@
     <ClInclude Include="IOManager.hh" />
     <ClInclude Include="Logger.hh" />
     <ClInclude Include="ID.hh" />
+    <ClInclude Include="Ranking.h" />
     <ClInclude Include="Renderer.hh" />
     <ClInclude Include="Resource.hh" />
     <ClInclude Include="Scene.hh" />
@@ -61,6 +63,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CandyCrush</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Snake_AntonioRodriguez_AniolFolch</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

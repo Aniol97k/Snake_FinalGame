@@ -36,7 +36,7 @@ void GameSceneWin::Update(void) {
 	else if (IM.IsKeyDown<KEY_BUTTON_DOWN>()) { m_Image.transform.y = W.GetHeight() / 2 + 30; }
 	else if (IM.IsKeyDown<KEY_BUTTON_ENTER>()) {
 		if (m_Image.transform.y == W.GetHeight() / 2 + 30) {
-			std::exit(0);
+			std::exit(0); //function that exits the game
 		}
 		else if (m_Image.transform.y == W.GetHeight() / 2 - 45) { SM.SetCurScene<GameSceneDiff>(); }
 	}
