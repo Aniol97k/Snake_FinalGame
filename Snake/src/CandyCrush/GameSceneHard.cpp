@@ -16,7 +16,7 @@ using namespace Logger;
 
 
 GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
-	ReadXML3(&cellsH, &speedH, &snakeXH, &snakeYH);
+	ReadXML3(&cellsH, &speedH, &snakeXH, &snakeYH, &timerXMLH);
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	m_HearthFull1 = { { -50,0,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
 	m_HearthFull2 = { { -50,120,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
@@ -39,7 +39,9 @@ GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS }
 	lastY = snakeYH;
 	Xpos[0] = snakeStartx;
 	Ypos[0] = snakeStarty;
-	keyPressed = false;
+	keyPressed = false; 
+	timerBarHAux = 0;
+	barLenght = 100;
 
 
 }
@@ -57,7 +59,8 @@ void GameSceneHard::OnEntry(void) {
 	snakeSpeed = speedH;
 	snakeCounter = 0;
 	keyPressed = false;
-
+	timerBarHAux = 0;
+	barLenght = 100;
 	
 }
 
@@ -151,6 +154,7 @@ void GameSceneHard::Update(void) {
 		m_score += 100;
 		snakeSpeed -= 3;
 		apples += 1;
+		barLenght = 100;
 
 	}
 
@@ -190,13 +194,40 @@ void GameSceneHard::Update(void) {
 
 		}
 	}
+
+	timerBar = { { 200,650,W.GetWidth() / 2 + barLenght,W.GetHeight() / 2 - 350 }, ObjectID::BAR };
+
+	if (keyPressed == true) {
+
+		timerBarHAux += TM.GetDeltaTime();
+		if (timerBarHAux >= timerXMLH) {
+			barLenght -= 5;
+			timerBarHAux = 0;
+		}
+		if (barLenght <= -515) {
+
+			snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
+			appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
+			lifes -= 1;
+			if (m_score >= 100) { m_score -= 100; }
+			for (int i = 1; i < APPLES; i++) {
+				Xpos[i] = 0;
+				Ypos[i] = 0;
+			}
+			barLenght = 100;
+			keyPressed = false;
+			direction = 3;
+
+		}
+	}
+	else { barLenght = 100; }
 }
 
 void GameSceneHard::Draw(void) {
 
 	m_background.Draw();
 	m_GridSnake.Draw(cellsH);
-
+	timerBar.Draw();
 	switch (lifes) {
 
 	case 3:

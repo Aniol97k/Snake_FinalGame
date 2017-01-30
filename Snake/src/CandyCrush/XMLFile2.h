@@ -21,7 +21,7 @@ using namespace Logger;
 using namespace std;
 
 
-void ReadXML2(int *cells, int* speed, int* snakeX, int*snakeY) {
+void ReadXML2(int *cells, int* speed, int* snakeX, int*snakeY, int* timer) {
 
 	xml_document<> doc;
 	ifstream file("XMLFile.xml");
@@ -49,6 +49,9 @@ void ReadXML2(int *cells, int* speed, int* snakeX, int*snakeY) {
 				}
 				else if (strcmp(pNodeI->name(), "snakeY") == 0) {
 					*snakeY = strtoumax(pNodeI->value(), NULL, 10);
+				}
+				else if (strcmp(pNodeI->name(), "timer") == 0) {
+					*timer = strtoumax(pNodeI->value(), NULL, 10);
 				}
 			}
 			return;

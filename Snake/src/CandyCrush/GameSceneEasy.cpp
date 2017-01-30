@@ -14,9 +14,10 @@ using namespace Logger;
 #define CELLS 25
 #define APPLES 25
 
+
 GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS }{
 	
-	ReadXML(&cells, &speed, &snakeX, &snakeY);
+	ReadXML(&cells, &speed, &snakeX, &snakeY, &timerXML);
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	m_HearthFull1 = { { -175,-100,W.GetWidth() / 2 ,W.GetHeight()/2 }, ObjectID::FULL_HEARTH };
 	m_HearthFull2 = { { -175,20,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
@@ -40,7 +41,8 @@ GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS }{
 	Xpos[0] = snakeStartx;
 	Ypos[0] = snakeStarty;
 	keyPressed = false;
-
+	timerBarAux = 0;
+	barLenght = 100;
 	
 }
 
@@ -57,6 +59,8 @@ void GameSceneEasy::OnEntry(void) {
 	snakeSpeed = speed;
 	snakeCounter = 0;
 	keyPressed = false;
+	timerBarAux = 0;
+	barLenght = 100;
 		
 }
 
@@ -64,6 +68,7 @@ void GameSceneEasy::OnExit(void) {
 }
 
 void GameSceneEasy::Update(void) {
+
 	switch (apples) {
 	case APPLES - 20:
 		level = 2;
@@ -150,6 +155,7 @@ void GameSceneEasy::Update(void) {
 				m_score += 100;
 				snakeSpeed -= 3;
 				apples += 1;
+				barLenght = 100;
 							
 	}
 
@@ -177,18 +183,46 @@ void GameSceneEasy::Update(void) {
 			m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[cells - 1][k].objectID || m_GridSnake.grid[snakeStartx][snakeStarty].objectID == m_GridSnake.grid[k][cells - 1].objectID) {
 			m_GridSnake.grid[snakeStartx][snakeStarty].objectID = ObjectID::WALL;
 			snakeStartx = snakeX; snakeStarty = snakeY; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
-				appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
-					lifes -= 1; 
-					if (m_score >= 100) { m_score -= 100; }
-					for (int i = 1; i < APPLES; i++) {
-						Xpos[i] = 0;
-						Ypos[i] = 0;
-					}
-					keyPressed = false;
-					direction = 3;
-					
+			appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
+			lifes -= 1;
+			if (m_score >= 100) { m_score -= 100; }
+			for (int i = 1; i < APPLES; i++) {
+				Xpos[i] = 0;
+				Ypos[i] = 0;
+			}
+			keyPressed = false;
+			direction = 3;
+
 		}
+
 	}
+
+	timerBar = { { 200,725,W.GetWidth() / 2 + barLenght,W.GetHeight() / 2 - 350 }, ObjectID::BAR };
+
+	if (keyPressed == true) {
+		
+		timerBarAux += TM.GetDeltaTime();
+		if (timerBarAux >= timerXML) {
+			barLenght -= 5;
+			timerBarAux = 0;
+		}
+		if (barLenght <= -515) {
+			
+			snakeStartx = snakeX; snakeStarty = snakeY; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
+			appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
+			lifes -= 1;
+			if (m_score >= 100) { m_score -= 100; }
+			for (int i = 1; i < APPLES; i++) {
+				Xpos[i] = 0;
+				Ypos[i] = 0;
+			}
+			barLenght = 100;
+			keyPressed = false;
+			direction = 3;
+			
+					}
+	}
+	else {barLenght = 100;}
 }
 
 
@@ -196,6 +230,7 @@ void GameSceneEasy::Draw(void) {
 
 	m_background.Draw(); 
 	m_GridSnake.Draw(cells);
+	timerBar.Draw();
 	switch (lifes) {
 
 	case 3:

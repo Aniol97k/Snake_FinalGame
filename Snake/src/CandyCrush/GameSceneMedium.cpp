@@ -15,7 +15,7 @@ using namespace Logger;
 #define APPLES 25
 
 GameSceneMedium::GameSceneMedium(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS } {
-	ReadXML2(&cellsM, &speedM, &snakeXM, &snakeYM);
+	ReadXML2(&cellsM, &speedM, &snakeXM, &snakeYM, &timerXMLM);
 	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_GAME };
 	m_HearthFull1 = { { -150,-50,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
 	m_HearthFull2 = { { -150,70,W.GetWidth() / 2 ,W.GetHeight() / 2 }, ObjectID::FULL_HEARTH };
@@ -39,6 +39,8 @@ GameSceneMedium::GameSceneMedium(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CEL
 	Xpos[0] = snakeStartx;
 	Ypos[0] = snakeStarty;
 	keyPressed = false;
+	timerBarMAux = 0;
+	barLenght = 100;
 
 
 }
@@ -56,6 +58,8 @@ void GameSceneMedium::OnEntry(void) {
 	snakeSpeed = speedM;
 	snakeCounter = 0;
 	keyPressed = false;
+	timerBarMAux = 0;
+	barLenght = 100;
 	
 
 }
@@ -151,6 +155,7 @@ void GameSceneMedium::Update(void){
 			m_score += 100;
 			snakeSpeed -= 3;
 			apples += 1;
+			barLenght = 100;
 
 		}
 
@@ -190,6 +195,34 @@ void GameSceneMedium::Update(void){
 
 			}
 		}
+
+
+		timerBar = { { 200,675,W.GetWidth() / 2 + barLenght,W.GetHeight() / 2 - 350 }, ObjectID::BAR };
+
+		if (keyPressed == true) {
+
+			timerBarMAux += TM.GetDeltaTime();
+			if (timerBarMAux >= timerXMLM) {
+				barLenght -= 5;
+				timerBarMAux = 0;
+			}
+			if (barLenght <= -515) {
+
+				snakeStartx = snakeXM; snakeStarty = snakeYM; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
+				appleX = rand() % (cellsM - 2) + 1; appleY = rand() % (cellsM - 2) + 1;
+				lifes -= 1;
+				if (m_score >= 100) { m_score -= 100; }
+				for (int i = 1; i < APPLES; i++) {
+					Xpos[i] = 0;
+					Ypos[i] = 0;
+				}
+				barLenght = 100;
+				keyPressed = false;
+				direction = 3;
+
+			}
+		}
+		else { barLenght = 100; }
 }
 
 
@@ -197,6 +230,7 @@ void GameSceneMedium::Draw(void) {
 
 	m_background.Draw();
 	m_GridSnake.Draw(cellsM);
+	timerBar.Draw();
 
 	switch (lifes) {
 

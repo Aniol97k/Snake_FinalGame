@@ -6,6 +6,7 @@
 		<speed>150</speed>
 		<snakeX>12</snakeX>
 		<snakeY>12</snakeY>
+    <timer>50</timer>
   </nivell>
 
 	<nivell diff = "medium">
@@ -13,6 +14,7 @@
 		<speed>135</speed>
 		<snakeX>10</snakeX>
 		<snakeY>10</snakeY>
+    <timer>27</timer>
    </nivell>
 
 	<nivell diff = "hard">
@@ -20,6 +22,7 @@
 		<speed>120</speed>
 		<snakeX>7</snakeX>
 		<snakeY>7</snakeY>
+    <timer>22</timer>
    </nivell>
 
 </Nivells>
