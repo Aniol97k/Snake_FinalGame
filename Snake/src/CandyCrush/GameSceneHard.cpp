@@ -69,17 +69,10 @@ void GameSceneHard::OnExit(void) {
 }
 
 void GameSceneHard::Update(void) {
-	switch (apples) {
-	case APPLES - 20:
-		level = 2;
-		break;
-	case APPLES - 13:
-		level = 3;
-		break;
-	case APPLES:
-		SM.SetCurScene<GameSceneWin>();
-		break;
-	}
+	//Apples if that determines the level.
+	if (apples == (5 + toAdd) * 1) { level = 2; toAdd += 3; }
+	if (apples == (5 + toAdd) * 2) { level = 3; toAdd += 3; }
+	if (apples == (5 + toAdd) * 3) { SM.SetCurScene<GameSceneWin>(); }
 
 	if (snakeSpeed <= 30) {
 		snakeSpeed = 30;
@@ -141,6 +134,9 @@ void GameSceneHard::Update(void) {
 
 	m_GridSnake.SnakeSpriteHead(snakeStartx, snakeStarty);
 
+	//If it worked 100% correctly we would apply this to generate the amount of walls we want.
+		// m_GridSnake.generateWalls(AMOUNT OF WALLS WE WANT TO GENERATE)
+
 	for (int i = 1; i < snakeCounter + 1; i++) {
 		m_GridSnake.SnakeSprite(Xpos[i], Ypos[i]);
 	}
@@ -152,9 +148,9 @@ void GameSceneHard::Update(void) {
 		m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE_HEAD;
 		appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 		snakeCounter += 1;
-		m_score += 100;
 		snakeSpeed -= 3;
 		apples += 1;
+		m_score += apples * 100;
 		barLenght = 100;
 
 	}
@@ -167,7 +163,7 @@ void GameSceneHard::Update(void) {
 		snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 		appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 		lifes -= 1;
-		if (m_score >= 100) { m_score -= 100; }
+		if (m_score >= 100) { m_score -= apples * 100; }
 		for (int i = 1; i < APPLES; i++) {
 			Xpos[i] = 0;
 			Ypos[i] = 0;
@@ -185,7 +181,7 @@ void GameSceneHard::Update(void) {
 			snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 			lifes -= 1;
-			if (m_score >= 100) { m_score -= 100; }
+			if (m_score >= 100) { m_score -= apples * 100; }
 			for (int i = 1; i < APPLES; i++) {
 				Xpos[i] = 0;
 				Ypos[i] = 0;

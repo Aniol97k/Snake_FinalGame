@@ -12,7 +12,7 @@ using namespace Logger;
 #define CELL_WIDTH 25
 #define CELL_HEIGHT 25
 #define CELLS 25
-#define APPLES 25
+#define APPLES 50
 
 //EVERY PIECE OF CODE ON THIS SCENE IS THE SAME ON THE OTHER ONES, EXEPT THE XML VALUES CHANGE FOR THE LEVEL DIFFICULTY, THAT'S WHY THE OTHERS AREN'T COMMENTED
 
@@ -48,7 +48,7 @@ GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS }{
 	keyPressed = false;
 	timerBarAux = 0;
 	barLenght = 100;
-	
+	toAdd = 5;
 }
 
 GameSceneEasy::~GameSceneEasy(void) {
@@ -68,7 +68,7 @@ void GameSceneEasy::OnEntry(void) {
 	keyPressed = false;
 	timerBarAux = 0;
 	barLenght = 100;
-		
+	toAdd = 5;
 }
 
 void GameSceneEasy::OnExit(void) {
@@ -76,18 +76,10 @@ void GameSceneEasy::OnExit(void) {
 
 void GameSceneEasy::Update(void) {
 
-	//Apples switch that determines the level.
-	switch (apples) {
-	case APPLES - 20:
-		level = 2;
-		break;
-	case APPLES - 13:
-		level = 3;
-		break;
-	case APPLES:
-		SM.SetCurScene<GameSceneWin>();
-		break;
-	}
+	//Apples if that determines the level.
+	if (apples == (5 + toAdd) * 1) { level = 2; toAdd++; }
+	if (apples == (5 + toAdd) * 2) { level = 3; toAdd++; }
+	if (apples == (5 + toAdd) * 3) { SM.SetCurScene<GameSceneWin>(); }
 
 	//Not needed, but in case the snake speed decreases too much: can't get negative values and sets a minimum one.
 	if (snakeSpeed <= 30) {
@@ -157,6 +149,8 @@ void GameSceneEasy::Update(void) {
 		else { timer += TM.GetDeltaTime(); }
 	}
 	
+
+	
 	//Printing the snake head, doesn't need to pass into a for or if because it's gonna get printed always, the position will always change.
 	m_GridSnake.SnakeSpriteHead(snakeStartx, snakeStarty);
 
@@ -164,6 +158,9 @@ void GameSceneEasy::Update(void) {
 	for (int i = 1; i < snakeCounter + 1; i++) {
 		m_GridSnake.SnakeSprite(Xpos[i], Ypos[i]);
 	}
+
+	//If it worked 100% correctly we would apply this to generate the amount of walls we want.
+		// m_GridSnake.generateWalls(AMOUNT OF WALLS WE WANT TO GENERATE)
 
 	//Printing the apple, always gonna get printed, but the positions will change.
 	m_GridSnake.AppleSprite(appleX, appleY);
@@ -173,9 +170,9 @@ void GameSceneEasy::Update(void) {
 		m_GridSnake.grid[appleX][appleY].objectID = ObjectID::SNAKE_HEAD;
 			appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
 				snakeCounter += 1; 
-				m_score += 100;
 				snakeSpeed -= 3;
 				apples += 1;
+				m_score += apples * 100;
 				barLenght = 100;
 							
 	}
@@ -209,7 +206,7 @@ void GameSceneEasy::Update(void) {
 			snakeStartx = snakeX; snakeStarty = snakeY; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
 			lifes -= 1;
-			if (m_score >= 100) { m_score -= 100; }
+			if (m_score >= 100) { m_score -= apples * 100; }
 			for (int i = 1; i < APPLES; i++) {
 				Xpos[i] = 0;
 				Ypos[i] = 0;
@@ -237,7 +234,7 @@ void GameSceneEasy::Update(void) {
 			snakeStartx = snakeX; snakeStarty = snakeY; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
 			lifes -= 1;
-			if (m_score >= 100) { m_score -= 100; }
+			if (m_score >= 100) { m_score -= apples * 100; }
 			for (int i = 1; i < APPLES; i++) {
 				Xpos[i] = 0;
 				Ypos[i] = 0;

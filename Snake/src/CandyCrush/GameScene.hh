@@ -44,7 +44,7 @@ private:
 	Sprite m_background, m_HearthFull1, m_HearthFull2, m_HearthFull3, m_Wall, m_Apple,m_Snake,m_cellBG,hearthEmpty1, hearthEmpty2, hearthEmpty3, timerBar;
 	GridSnake m_GridSnake;
 	float timer; //Timer for the snake speed
-	int direction,walls,level,apples,appleCounter,lifes,snakeStartx, snakeSpeed,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
+	int direction,walls,level,apples,appleCounter, toAdd,lifes,snakeStartx, snakeSpeed,appleX,appleY,snakeCounter,snakeStarty,m_score{ 0 };
 	int cells, snakeX, snakeY, speed, timerXML; //XML variables to read
 	int timerBarAux, lastX, lastY, lastX2, lastY2, barLenght;
 	int Xpos[50]; //Arrays for the X and Y positions of the snake
@@ -66,7 +66,7 @@ private:
 	Sprite m_background, m_HearthFull1, m_HearthFull2, m_HearthFull3,m_Wall, m_Apple, m_Snake, m_cellBG, hearthEmpty1, hearthEmpty2, hearthEmpty3, timerBar;
 	GridSnake m_GridSnake;
 	float timer; 
-	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
+	int direction, walls, level, apples, appleCounter, lifes,toAdd, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
 	int cellsM, snakeXM, snakeYM, speedM, timerXMLM;
 	int timerBarMAux, lastX, lastY, lastX2, lastY2, barLenght;
 	int Xpos[50]; 
@@ -86,7 +86,7 @@ private:
 	Sprite m_background, m_HearthFull1, m_HearthFull2, m_HearthFull3, m_Wall, m_Apple, m_Snake, m_cellBG, hearthEmpty1, hearthEmpty2, hearthEmpty3, timerBar;
 	GridSnake m_GridSnake;
 	float timer;
-	int direction, walls, level, apples, appleCounter, lifes, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
+	int direction, walls, level, apples, appleCounter, lifes, toAdd, snakeStartx, snakeSpeed, appleX, appleY, snakeCounter, snakeStarty, m_score{ 0 };
 	int cellsH, snakeXH, snakeYH, speedH,timerXMLH;
 	int timerBarHAux, lastX, lastY, lastX2, lastY2, barLenght;
 	int Xpos[50];
