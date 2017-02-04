@@ -40,9 +40,6 @@
     <ClCompile Include="GameSceneHard.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="Ranking.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Transform.hh">
@@ -111,10 +108,7 @@
     <ClInclude Include="XMLFile3.h">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="Ranking.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Binary.h">
+    <ClInclude Include="BinaryFiles.h">
       <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>

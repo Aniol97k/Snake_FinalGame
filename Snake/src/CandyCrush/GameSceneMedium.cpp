@@ -75,7 +75,7 @@ void GameSceneMedium::Update(void){
 	//Apples if that determines the level.
 	if (apples == (5 + toAdd) * 1) { level = 2; toAdd += 2; }
 	if (apples == (5 + toAdd) * 2) { level = 3; toAdd+=2; }
-	if (apples == (5 + toAdd) * 3) { SM.SetCurScene<GameSceneWin>(); }
+	if (apples == (5 + toAdd) * 3) { SM.SetCurScene<GameSceneDeath>(); }
 
 		if (snakeSpeed <= 30) {
 			snakeSpeed = 30;

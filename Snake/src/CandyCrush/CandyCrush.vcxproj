@@ -28,11 +28,10 @@
     <ClCompile Include="GameSceneWin.cpp" />
     <ClCompile Include="Grid.cc" />
     <ClCompile Include="main.cc" />
-    <ClCompile Include="Ranking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assert.hh" />
-    <ClInclude Include="Binary.h" />
+    <ClInclude Include="BinaryFiles.h" />
     <ClInclude Include="Color.hh" />
     <ClInclude Include="GameEngine.hh" />
     <ClInclude Include="GameScene.hh" />
@@ -41,7 +40,6 @@
     <ClInclude Include="IOManager.hh" />
     <ClInclude Include="Logger.hh" />
     <ClInclude Include="ID.hh" />
-    <ClInclude Include="Ranking.h" />
     <ClInclude Include="Renderer.hh" />
     <ClInclude Include="Resource.hh" />
     <ClInclude Include="Scene.hh" />

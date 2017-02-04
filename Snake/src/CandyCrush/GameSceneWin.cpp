@@ -2,7 +2,7 @@
 #include "System.hh"
 #include "Logger.hh"
 #include "GameScene.hh"
-#include "Binary.h"
+
 using namespace Logger;
 
 #define CELL_WIDTH 80

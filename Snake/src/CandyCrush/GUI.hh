@@ -3,6 +3,7 @@
 #include "Color.hh"
 #include "Renderer.hh"
 #include "Transform.hh"
+#include "SceneManager.hh"
 
 class GUI {
 public:

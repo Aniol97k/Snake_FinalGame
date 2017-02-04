@@ -8,7 +8,9 @@
 #include "System.hh"
 #include "Logger.hh"
 #include "GameScene.hh"
-#include "Binary.h"
+#include "BinaryFiles.h"
+#include <string>
+#include <vector>
 using namespace Logger;
 
 #define CELL_WIDTH 80
@@ -19,10 +21,10 @@ using namespace Logger;
 GameSceneDeath::GameSceneDeath(void) {
 
 	//Image loads
-	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_DEATH };
+	m_background = { { 0, 0, W.GetWidth(), W.GetHeight() }, ObjectID::BG_WIN };
 	int arrowHeight = W.GetHeight() / 2 - 45;
 	m_Image = { { W.GetWidth() / 2 - 180, arrowHeight,90,90 }, ObjectID::ARROW };
-
+	
 }
 
 GameSceneDeath::~GameSceneDeath(void) {
@@ -30,15 +32,16 @@ GameSceneDeath::~GameSceneDeath(void) {
 
 void GameSceneDeath::OnEntry(void) {
 	std::string playerName;
-	std::cin >> playerName;
-	//BinaryFiles::writeBin(name, SM.score);
-	
+	std::cout << "PLEASE ENTER YOUR NAME: ";
+	std::cin >> playerName;	
+	BinaryFiles::writeBin(playerName, SM.score);
 }
 
 void GameSceneDeath::OnExit(void) {
 }
 
 void GameSceneDeath::Update(void) {
+
 
 	//If's for the arrow's position on the menu
 	if (m_Image.transform.y == W.GetHeight() / 2 - 45) {

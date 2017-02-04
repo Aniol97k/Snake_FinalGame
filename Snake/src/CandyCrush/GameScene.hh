@@ -1,6 +1,7 @@
 #pragma once
 #include "Grid.hh"
 #include "Scene.hh"
+#include <string>
 
 
 // GameScene for the menu
@@ -106,6 +107,7 @@ public:
 private:
 	Sprite m_background, m_Image;
 	bool asked;
+	std::string name;
 };
 
 //GameScene when player wins

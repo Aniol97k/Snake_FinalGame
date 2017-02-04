@@ -81,7 +81,7 @@ void GameSceneEasy::Update(void) {
 	//Apples if that determines the level.
 	if (apples == (5 + toAdd) * 1) { level = 2; toAdd++; }
 	if (apples == (5 + toAdd) * 2) { level = 3; toAdd++; }
-	if (apples == (5 + toAdd) * 3) { SM.SetCurScene<GameSceneWin>(); }
+	if (apples == (5 + toAdd) * 3) { SM.SetCurScene<GameSceneDeath>(); }
 
 	//Not needed, but in case the snake speed decreases too much: can't get negative values and sets a minimum one.
 	if (snakeSpeed <= 30) {
