@@ -9,6 +9,7 @@
 
 class SceneManager {
 public:
+	int score;
 	~SceneManager() { for (auto &scene : m_scenes) delete scene.second; }
 	inline static SceneManager &Instance() {
 		static SceneManager sceneManager;

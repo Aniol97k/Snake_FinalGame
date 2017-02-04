@@ -49,6 +49,7 @@ GameSceneEasy::GameSceneEasy(void): m_GridSnake{CELL_WIDTH,CELL_HEIGHT,CELLS }{
 	timerBarAux = 0;
 	barLenght = 100;
 	toAdd = 5;
+	SM.score = 0;
 }
 
 GameSceneEasy::~GameSceneEasy(void) {
@@ -69,6 +70,7 @@ void GameSceneEasy::OnEntry(void) {
 	timerBarAux = 0;
 	barLenght = 100;
 	toAdd = 5;
+	SM.score = 0;
 }
 
 void GameSceneEasy::OnExit(void) {
@@ -149,7 +151,7 @@ void GameSceneEasy::Update(void) {
 		else { timer += TM.GetDeltaTime(); }
 	}
 	
-
+	if (SM.score <= 0) { SM.score = 0; } //Just so score doesn't get negative
 	
 	//Printing the snake head, doesn't need to pass into a for or if because it's gonna get printed always, the position will always change.
 	m_GridSnake.SnakeSpriteHead(snakeStartx, snakeStarty);
@@ -172,7 +174,7 @@ void GameSceneEasy::Update(void) {
 				snakeCounter += 1; 
 				snakeSpeed -= 3;
 				apples += 1;
-				m_score += apples * 100;
+				SM.score += apples * 100;
 				barLenght = 100;
 							
 	}
@@ -187,7 +189,7 @@ void GameSceneEasy::Update(void) {
 		snakeStartx = snakeX; snakeStarty = snakeY; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 		appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
 		lifes -= 1;
-		if (m_score >= 100) { m_score -= 100; }
+		if (SM.score >= 100) { SM.score -= 100; }
 		//For the reset the snake body positions, so it's doesn't get mixed the old snake with the new one (dead and alive)
 		for (int i = 1; i < APPLES; i++) {
 			Xpos[i] = 0;
@@ -206,7 +208,7 @@ void GameSceneEasy::Update(void) {
 			snakeStartx = snakeX; snakeStarty = snakeY; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cells - 2) + 1; appleY = rand() % (cells - 2) + 1;
 			lifes -= 1;
-			if (m_score >= 100) { m_score -= apples * 100; }
+			if (SM.score >= 100) { SM.score -= apples * 100; }
 			for (int i = 1; i < APPLES; i++) {
 				Xpos[i] = 0;
 				Ypos[i] = 0;
@@ -277,7 +279,7 @@ void GameSceneEasy::Draw(void) {
 	}
 
 	//Text draw for the score and level
-	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(m_score),
+	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(SM.score),
 	{ W.GetWidth() >> 1, int(W.GetHeight()*.05f), 1, 1 },
 	{ 0, 0, 0 }); 
 	

@@ -43,6 +43,7 @@ GameSceneHard::GameSceneHard(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CELLS }
 	keyPressed = false; 
 	timerBarHAux = 0;
 	barLenght = 100;
+	SM.score = 0;
 
 
 }
@@ -62,6 +63,7 @@ void GameSceneHard::OnEntry(void) {
 	keyPressed = false;
 	timerBarHAux = 0;
 	barLenght = 100;
+	SM.score = 0;
 	
 }
 
@@ -95,6 +97,8 @@ void GameSceneHard::Update(void) {
 	if (lifes <= 0) {
 		SM.SetCurScene<GameSceneDeath>();
 	}
+
+	if (SM.score <= 0) { SM.score = 0; }
 
 	if (keyPressed == true) {
 		if (timer >= snakeSpeed) {
@@ -150,7 +154,7 @@ void GameSceneHard::Update(void) {
 		snakeCounter += 1;
 		snakeSpeed -= 3;
 		apples += 1;
-		m_score += apples * 100;
+		SM.score += apples * 100;
 		barLenght = 100;
 
 	}
@@ -163,7 +167,7 @@ void GameSceneHard::Update(void) {
 		snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 		appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 		lifes -= 1;
-		if (m_score >= 100) { m_score -= apples * 100; }
+		if (SM.score >= 100) { SM.score -= apples * 100; }
 		for (int i = 1; i < APPLES; i++) {
 			Xpos[i] = 0;
 			Ypos[i] = 0;
@@ -181,7 +185,7 @@ void GameSceneHard::Update(void) {
 			snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 			lifes -= 1;
-			if (m_score >= 100) { m_score -= apples * 100; }
+			if (SM.score >= 100) { SM.score -= apples * 100; }
 			for (int i = 1; i < APPLES; i++) {
 				Xpos[i] = 0;
 				Ypos[i] = 0;
@@ -206,7 +210,7 @@ void GameSceneHard::Update(void) {
 			snakeStartx = snakeXH; snakeStarty = snakeYH; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cellsH - 2) + 1; appleY = rand() % (cellsH - 2) + 1;
 			lifes -= 1;
-			if (m_score >= 100) { m_score -= 100; }
+			if (SM.score >= 100) { SM.score -= 100; }
 			for (int i = 1; i < APPLES; i++) {
 				Xpos[i] = 0;
 				Ypos[i] = 0;
@@ -245,7 +249,7 @@ void GameSceneHard::Draw(void) {
 	}
 
 
-	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(m_score),
+	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(SM.score),
 	{ W.GetWidth() >> 1, int(W.GetHeight()*0.15f), 1, 1 },
 	{ 0, 0, 0 });
 

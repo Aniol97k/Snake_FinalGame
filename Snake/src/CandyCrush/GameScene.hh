@@ -105,7 +105,7 @@ public:
 	void Draw(void) override;
 private:
 	Sprite m_background, m_Image;
-
+	bool asked;
 };
 
 //GameScene when player wins
@@ -119,5 +119,6 @@ public:
 	void Draw(void) override;
 private:
 	Sprite m_background, m_Image;
+	bool asked;
 
 };

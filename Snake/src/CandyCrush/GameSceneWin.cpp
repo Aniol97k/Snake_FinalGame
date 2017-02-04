@@ -2,6 +2,7 @@
 #include "System.hh"
 #include "Logger.hh"
 #include "GameScene.hh"
+#include "Binary.h"
 using namespace Logger;
 
 #define CELL_WIDTH 80
@@ -48,6 +49,7 @@ void GameSceneWin::Draw(void) {
 	m_Image.Draw();
 
 	GUI::DrawTextSolid<FontID::FACTORY>("-YOU WON-", { W.GetWidth() >> 1, int(W.GetHeight()*.1f),1, 1 }, { 0, 0, 0 }); 
+	GUI::DrawTextSolid<FontID::FACTORY>("SCORE: " + std::to_string(SM.score), { W.GetWidth() >> 1, int(W.GetHeight()*.3f),1, 1 }, { 0, 0, 0 });
 	GUI::DrawTextSolid<FontID::FACTORY>("PLAY AGAIN", { W.GetWidth() >> 1, int(W.GetHeight()*.5f), 1, 1 }, { 0, 0, 0 });
 	GUI::DrawTextSolid<FontID::FACTORY>("EXIT", { W.GetWidth() >> 1, int(W.GetHeight()*.6f), 1, 1 }, { 0, 0, 0 });
 

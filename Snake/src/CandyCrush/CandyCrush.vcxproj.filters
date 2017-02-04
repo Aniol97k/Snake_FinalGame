@@ -114,6 +114,9 @@
     <ClInclude Include="Ranking.h">
       <Filter>Model</Filter>
     </ClInclude>
+    <ClInclude Include="Binary.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="XMLFile.xml">

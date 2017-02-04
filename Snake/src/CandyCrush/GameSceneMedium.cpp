@@ -44,6 +44,7 @@ GameSceneMedium::GameSceneMedium(void) : m_GridSnake{ CELL_WIDTH,CELL_HEIGHT,CEL
 	timerBarMAux = 0;
 	barLenght = 100;
 	toAdd = 5;
+	SM.score = 0;
 
 }
 
@@ -63,6 +64,7 @@ void GameSceneMedium::OnEntry(void) {
 	timerBarMAux = 0;
 	barLenght = 100;
 	toAdd = 5;
+	SM.score = 0;
 
 }
 
@@ -96,6 +98,8 @@ void GameSceneMedium::Update(void){
 		if (lifes <= 0) {
 			SM.SetCurScene<GameSceneDeath>();
 		}
+
+		if (SM.score <= 0) { SM.score = 0; }
 
 		if (keyPressed == true) {
 
@@ -153,7 +157,7 @@ void GameSceneMedium::Update(void){
 			snakeSpeed -= 3;
 			apples += 1;
 			barLenght = 100;
-			m_score += apples * 100;
+			SM.score += apples * 100;
 
 		}
 
@@ -165,7 +169,7 @@ void GameSceneMedium::Update(void){
 			snakeStartx = snakeXM; snakeStarty = snakeYM; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 			appleX = rand() % (cellsM - 2) + 1; appleY = rand() % (cellsM - 2) + 1;
 			lifes -= 1;
-			if (m_score >= 100) { m_score -= apples * 100; }
+			if (SM.score >= 100) { SM.score -= apples * 100; }
 			for (int i = 1; i < APPLES; i++) {
 				Xpos[i] = 0;
 				Ypos[i] = 0;
@@ -183,7 +187,7 @@ void GameSceneMedium::Update(void){
 				snakeStartx = snakeXM; snakeStarty = snakeYM; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 				appleX = rand() % (cellsM - 2) + 1; appleY = rand() % (cellsM - 2) + 1;
 				lifes -= 1;
-				if (m_score >= 100) { m_score -= apples * 100; }
+				if (SM.score >= 100) { SM.score -= apples * 100; }
 				for (int i = 1; i < APPLES; i++) {
 					Xpos[i] = 0;
 					Ypos[i] = 0;
@@ -209,7 +213,7 @@ void GameSceneMedium::Update(void){
 				snakeStartx = snakeXM; snakeStarty = snakeYM; m_GridSnake.grid[appleX][appleY].objectID = ObjectID::BG_CELL;
 				appleX = rand() % (cellsM - 2) + 1; appleY = rand() % (cellsM - 2) + 1;
 				lifes -= 1;
-				if (m_score >= 100) { m_score -= 100; }
+				if (SM.score >= 100) { SM.score -= 100; }
 				for (int i = 1; i < APPLES; i++) {
 					Xpos[i] = 0;
 					Ypos[i] = 0;
@@ -250,7 +254,7 @@ void GameSceneMedium::Draw(void) {
 	}
 
 
-	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(m_score),
+	GUI::DrawTextBlended<FontID::ARIAL>("LEVEL: " + std::to_string(level) + "   SCORE: " + std::to_string(SM.score),
 	{ W.GetWidth() >> 1, int(W.GetHeight()*.1f), 1, 1 },
 	{ 0, 0, 0 });
 
